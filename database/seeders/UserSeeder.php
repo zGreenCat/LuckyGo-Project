@@ -20,6 +20,8 @@ class UserSeeder extends Seeder
             'email' => 'antonio.barraza.guzman@gmail.com',
             'password' => Hash::make('Luckygo23'),
             'role' => 'A',
+            'stat' => true,
+            'lotcant' => '0',
             'remember_token' => Str::random(10)
         ];
         DB::table('users')->insert($data);

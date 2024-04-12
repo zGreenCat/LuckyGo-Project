@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('password');
             $table->string('age')->nullable();
             $table->string('role');
+            $table->boolean('stat');
+            $table->boolean('lotcant');
             $table->rememberToken();
             $table->timestamps();
         });
