@@ -10,7 +10,7 @@ class LoginController extends Controller
 {
     public function store(Request $request )
     {
-        $messages = makeMessages();
+        $messages = makeMessagesLogin();
         //Validar datos
         
         $request->validate([
@@ -19,7 +19,7 @@ class LoginController extends Controller
         ],$messages);
         //Autenticar en base de datos
         if(!auth()->attempt($request->only('email','password'), $request->remember)){
-            return back()->with('message','Las credenciales son incorrectas');
+            return back()->with('message','Usuario no registrado o contraseña incorrecta');
         }
         
         $user= DB::table('users')->where('email',$request->email)->get();

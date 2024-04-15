@@ -14,13 +14,15 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
-        $messages = makeMessages();
+        $messages = makeMessageRegister();
         //Validar datos
         $request->validate([
-            'name' => ['required', 'unique:users'],
+            'name' => 'required',
             'email' => ['required','email', 'unique:users'],
             'age'=> 'required'
         ],$messages);
+        if(!is_numeric($request->age)){return back()->with('message','La edad del sorteador debe ser numérica');}
+        if(intval($request->age) < 18 || intval($request->age) > 65 ){return back()->with('message','La edad del sorteador no puede ser inferior a 18 y mayor a 65');}
         //Creacion contrasena aleatoria
         $password = rand(99999,999999);
         //Creacion de usuario
