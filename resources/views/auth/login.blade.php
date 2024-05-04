@@ -26,19 +26,19 @@
   <main>
     <form class="max-w-sm mx-auto bg-gray-100 p-5 rounded-lg" method="POST" action="{{route('login.store')}}"  novalidate>
       @csrf
-      <h1 class="text-center mb-5">Iniciar sesión</h1>
+      <h1 class="text-center mb-5" style="font-size: 18px; font-weight: bold;">Iniciar sesión</h1>
         <div class="mb-5">
           <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo</label>
           <input type="email" id="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required />
             @error('email')
-              <p class="bg-red-500 text-white my-2 rounded-lg text-lg text-center p-2">{{$message}}</p>
+              <p class="bg-red-400 text-white my-2 rounded-lg text-sm text-center p-2">{{$message}}</p>
             @enderror
         </div>
         <div class="mb-5">
           <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>
           <input type="password" id="password" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="*********" required />
           @error('password')
-              <p class="bg-red-500 text-white my-2 rounded-lg text-lg text-center p-2">{{$message}}</p>
+              <p class="bg-red-400 text-white my-2 rounded-lg text-sm text-center p-2">{{$message}}</p>
           @enderror
         </div>
         @if (@session('message'))
