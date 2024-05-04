@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 //Vista principal
 Route::get('/', function () {
-    return view('layouts.app');
+    return view('welcome');
 })->name('main');
 //Vista Iniciar Sesion
 Route::get('login', function () {
