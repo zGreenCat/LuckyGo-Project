@@ -14,8 +14,8 @@ class LoginController extends Controller
         //Validar datos
         
         $request->validate([
-            'email' => ['required','email'],
-            'password'=>['required','min:6']
+            'email' => ['required'],
+            'password'=>['required']
         ],$messages);
         //Autenticar en base de datos
         if(!auth()->attempt($request->only('email','password'), $request->remember)){
