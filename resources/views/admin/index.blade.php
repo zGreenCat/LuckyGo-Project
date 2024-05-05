@@ -76,7 +76,7 @@
       </div>    
       @else
       <div class="flex justify-center">
-        <p class="bg-red-500 text-white my-2 rounded-lg text-lg text-center p-2">No hay sorteadores en sistema </p>    
+        <p style="background-color:#F6686B" class=" text-white my-2 rounded-lg text-lg text-center p-2">No hay sorteadores en sistema </p>    
       </div>
         
       @endif
