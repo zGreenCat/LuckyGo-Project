@@ -39,7 +39,7 @@ class RegisterController extends Controller
         $user = $request->name;
         //Correo con contrasena enviada
         Mail::to($request->email)->send(new PasswordMailable($user ,$password));
-        return redirect()->route('admin.view');
+        return redirect()->route('admin.view')->with('success','success');
         
     }
 }

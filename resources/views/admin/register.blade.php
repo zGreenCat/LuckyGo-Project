@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
-  <form class="max-w-sm mx-auto bg-gray-100 p-5 rounded-lg" method="POST" action="{{route('register.store')}}"  novalidate>
-    <h1 class="text-center mb-5" style="font-size: 18px; font-weight: bold;">Registro de nuevo sorteador</h1>
+  <form class="max-w-sm mx-auto bg-gray-100 p-5 rounded-lg" id="regForm" method="POST" action="{{route('register.store')}}"  novalidate>
   @csrf
     <div class="mb-5">
       <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre del sorteador</label>
@@ -27,10 +26,40 @@
     @if (@session('message'))
             <p class="bg-red-400 text-white my-2 rounded-lg text-sm text-center p-2">{{ session('message')}}</p>    
      @endif
-     <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" style="background-color: #0A74DA;">Registrar</button>
-     
+     <div class="flex justify-center">
+      <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" style="background-color: #0A74DA;">Entrar</button>
+    </div>     
   
   </form>
+@endsection
+
+@section('js')
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    
+  <script>
+    document.getElementById('regForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: 'Esta acción registrará un nuevo sorteador',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, registrar sorteador',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        });
+    });
+</script>
+
+     
+
 @endsection
    
 

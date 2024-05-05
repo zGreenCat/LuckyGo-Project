@@ -75,8 +75,26 @@
         </table>
       </div>    
       @else
+      <div class="flex justify-center">
         <p class="bg-red-500 text-white my-2 rounded-lg text-lg text-center p-2">No hay sorteadores en sistema </p>    
+      </div>
+        
       @endif
+@endsection
+
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (Session::has('success'))
+<script>
+    Swal.fire({
+      title: "Registado!",
+      text: "El sorteador ha sido registrado con exito",
+      icon: "success"
+    });
+</script>
+  
+@endif
+    
 @endsection
 </head>
 <body>   
