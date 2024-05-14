@@ -9,7 +9,7 @@
 <body>
     <p>Hola {{$nickname}}</p>
     <p>Te has registrado correctamente</p>
-    <p>Contrasena generada automaticamente, no la compartas con nadie:</p>
+    <p>Contraseña generada automáticamente, no la compartas con nadie:</p>
     <p>{{$password}}</p>
 </body>
 </html>
