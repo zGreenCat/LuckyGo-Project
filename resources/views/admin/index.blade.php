@@ -13,8 +13,19 @@
     });
 </script>
   
+
 @endif
-    
+
+@if (Session::has('error'))
+<script>
+    Swal.fire({
+        title: "Error",
+        text: "Ha ocurrido un error al registrar el sorteador, inténtelo más tarde",
+        icon: "error"
+    });
+</script>
+@endif
+
 @endsection
 </head>
 <body>   
