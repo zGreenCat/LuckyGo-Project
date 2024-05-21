@@ -5,6 +5,7 @@ use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\LogoutController;
 use App\Http\Controllers\auth\RegisterController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LotteryTicketController;
 
 //Vista principal
 Route::get('/', function () {
@@ -45,3 +46,8 @@ Route::middleware('auth')->group(function(){
         return view('sorter.index');
     })->name('sorter.view');
 });
+
+//Vista Comprar Ticket
+Route::get('/buy-ticket', [LotteryTicketController::class, 'showForm'])->name('buy-ticket-form');
+//Vista Controlador Comprar Ticket
+Route::get('/buy-ticket', [LotteryTicketController::class, 'buyTicket'])->name('buy-ticket');
