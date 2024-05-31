@@ -65,7 +65,9 @@
                           <option value="true" @if($user->stat) selected @endif>Habilitado</option>
                           <option value="false" @if(!$user->stat) selected @endif>Deshabilitado</option>
                       </select>
-                      <button type="submit">Actualizar</button>
+                      <div>
+                        <button style="background-color:#2ECC71" class="px-3 rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 text-white" type="submit">Actualizar</button>
+                      </div>
                   </form>
                   </td>
                 </tr> 
@@ -87,14 +89,21 @@
 @if (Session::has('success'))
 <script>
     Swal.fire({
-      title: "Registado!",
+      title: "¡Registado!",
       text: "El sorteador ha sido registrado con exito",
+      icon: "success"
+    });
+</script>
+@elseif (Session::has('success2'))
+<script>
+    Swal.fire({
+      title: "¡Actualizado!",
+      text: "El o los sorteadores han sido actualizados con éxito.",
       icon: "success"
     });
 </script>
   
 @endif
-    
 @endsection
 </head>
 <body>   

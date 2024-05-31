@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<form class="max-w-sm mx-auto bg-gray-100  p-9 rounded-lg shadow-lg" method="POST" action="{{route('register.store')}}"  novalidate>
+<form id="regForm" class="max-w-sm mx-auto bg-gray-100  p-9 rounded-lg shadow-lg" method="POST" action="{{route('register.store')}}"  novalidate>
   <h1 class="text-center mb-5" style="font-size: 18px; font-weight: bold;">Registro de nuevo sorteador</h1>
 @csrf
   <div class="mb-5">
