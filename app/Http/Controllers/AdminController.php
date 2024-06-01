@@ -18,7 +18,7 @@ class AdminController extends Controller
     public function search(Request $request)
     {
         
-        $users= DB::table('users')->where('name','%'.$request->search.'%')->orWhere('email','LIKE','%'.$request->search.'%')->orderBy('name')->get();
+        $users= DB::table('users')->where('name',"LIKE",'%'.$request->search.'%')->orWhere('email','LIKE','%'.$request->search.'%')->orderBy('name')->get();
         return view('admin.index',[
             'users'=>$users
         ]);
@@ -31,7 +31,7 @@ class AdminController extends Controller
         $user = User::find($id);
         $user->stat = $newStat;
         $user->save();
-        return redirect()->route('admin.view');
+        return redirect()->route('admin.view')->with('success2','success2');;
 
     }
 }
