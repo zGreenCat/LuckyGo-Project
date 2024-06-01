@@ -48,6 +48,7 @@ Route::middleware('auth')->group(function(){
 });
 
 //Vista Comprar Ticket
-Route::get('/buy-ticket', [LotteryTicketController::class, 'showForm'])->name('buy-ticket-form');
+//Route::get('/buy-ticket', [LotteryTicketController::class, 'showForm'])->name('buy-ticket-form');
 //Vista Controlador Comprar Ticket
-Route::get('/buy-ticket', [LotteryTicketController::class, 'buyTicket'])->name('buy-ticket');
+Route::get('/buyTicket', [LotteryTicketController::class, 'showForm'])->name('buyTicket');
+Route::post('/buyTicket',[LotteryTicketController::class,'store'])->name('buyTicket.store');

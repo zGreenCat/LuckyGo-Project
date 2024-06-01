@@ -8,27 +8,26 @@ use App\Models\LotteryTicket;
 class LotteryTicketController extends Controller{
 
     public function showForm(){
-        return view('buy-ticket');
+        return view('client.buyTicket');
     }
 
-    public function buyTicket(Request $request){
-         // Validate the request
-         $request->validate([
-            'numbers' => 'required|array|size:5',
-            'numbers.*' => 'required|integer|between:1,30',
-            'lucky' => 'boolean',
-        ]);
+    public function store(Request $request){
 
-        // Create a new lottery ticket
-        $ticket = new LotteryTicket();
-        $ticket->numbers = implode(',', $request->numbers);
-        $ticket->lucky = $request->lucky ? true : false;
-        $ticket->price = $ticket->lucky ? 3000 : 2000;
-        $ticket->save();
+        $messages = makeMessageRegister();
+        //Validar datos
 
-        // Show confirmation
-        return view('ticket-confirmation', [
-            'ticket' => $ticket,
+        //Crear ID
+        $id = "LG" . rand(1,9) . rand(0,9) . rand(0,9);
+
+        $selectedNumbers = $request->input('selectedNumbers')[1];
+        $tendresuerte = $request->has('tendresuerte');
+
+        // Crear un nuevo registro en la tabla de billetes
+        LotteryTicket::create([
+            'ticketID' => $id,
+            'selectedNumbers' => $selectedNumbers,
+      
         ]);
+        return redirect()->route('main');
     }
 }
