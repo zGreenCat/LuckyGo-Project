@@ -9,8 +9,8 @@
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
             </svg>
         </div>
-        <input type="form-control" name="search" id="search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingrese nombre o correo electronico"  />
-        <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buscar</button>
+        <input type="form-control" name="search" id="search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingrese nombre o correo electrónico"  />
+        <button style="background-color:#0A74DA; transition: background-color 0.1s;" onmouseover="this.style.backgroundColor='#074f9d'" onmouseout="this.style.backgroundColor='#0A74DA'" type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-1000 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buscar</button>
     </div>
   </form>
 </div>
@@ -26,7 +26,7 @@
                         Nombre del sorteador
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Correo electronico
+                        Correo electrónico
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Edad
@@ -59,17 +59,15 @@
                     {{$user->lotcant}}
                   </td>
                   <td class="px-6 py-4">
-                    <form action="{{route('admin.change',['id'=>$user->id])}}" method="POST">
-                      @csrf
-                      <select name="estado">
-                          <option value="true" @if($user->stat) selected @endif>Habilitado</option>
-                          <option value="false" @if(!$user->stat) selected @endif>Deshabilitado</option>
-                      </select>
-                      <div>
-                        <button style="background-color:#2ECC71" class="px-3 rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 text-white" type="submit">Actualizar</button>
-                      </div>
-                  </form>
-                  </td>
+                    <form action="{{ route('admin.change', ['id' => $user->id]) }}" method="POST" style="display: flex; align-items: center;">
+                        @csrf
+                        <select name="estado">
+                            <option value="true" @if($user->stat) selected @endif>Habilitado</option>
+                            <option value="false" @if(!$user->stat) selected @endif>Deshabilitado</option>
+                        </select>
+                        <button style="background-color:#2ECC71; margin-left: 10px; transition: background-color 0.1s;" onmouseover="this.style.backgroundColor='#27AE60'" onmouseout="this.style.backgroundColor='#2ECC71'" class="px-3 rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 text-white" type="submit">Actualizar</button>
+                    </form>
+                </td>
                 </tr> 
               @endif
               @endforeach
@@ -78,7 +76,7 @@
       </div>    
       @else
       <div class="flex justify-center">
-        <p style="background-color:#F6686B" class=" text-white my-2 rounded-lg text-lg text-center p-2">No hay sorteadores en sistema </p>    
+        <p style="background-color:#F56558" class=" text-white my-2 rounded-lg text-lg text-center p-2">No hay sorteadores en sistema </p>    
       </div>
         
       @endif
