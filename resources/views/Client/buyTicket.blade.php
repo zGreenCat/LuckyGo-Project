@@ -4,7 +4,7 @@
 
 <h1 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white items-center justify-center text-center">Compra de boleto de lotería</h1>
 <div class="ml-10 mt-10 justify-center">
-    <h1 class="mb-4 text-lg font-bold tracking-tight text-gray-900 dark:text-white">¿Como jugar?</h1>
+    <h1 class="mb-5 text-lg font-bold tracking-tight text-gray-900 dark:text-white">¿Como jugar?</h1>
     <p class="mt-5">Si no sabes cómo jugar, aquí te explicamos brevemente los pasos a seguir:</p>
     <p class="mt-5">1. Selecciona tus 5 números favoritos para jugar. Son solo 5, así que elige sabiamente.</p>
     <p class="mt-5">2. Puedes seleccionar la casilla de "Tendré suerte", esto te dará más posibilidades de ganar.</p>
