@@ -82,6 +82,7 @@
       </div>
         
       @endif
+=======
 @endsection
 
 @section('js')
@@ -89,8 +90,8 @@
 @if (Session::has('success'))
 <script>
     Swal.fire({
-      title: "¡Registado!",
-      text: "El sorteador ha sido registrado con exito",
+      title: "Registrado!",
+      text: "El sorteador ha sido registrado con éxito",
       icon: "success"
     });
 </script>
