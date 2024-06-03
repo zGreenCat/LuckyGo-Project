@@ -15,21 +15,28 @@
     </div>
     <input type="hidden" name="selectedNumbers" id="selectedNumbers">
         <div class="mt-3">
-            <p>Billete: $2,000</p>
+            <p>Billete: $2.000</p>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="tendresuerte" id="tendresuerte" value="1">
                 <label class="form-check-label" for="tendresuerte">
-                    Categoría "Tendré suerte" (+$1,000)
+                    Categoría "Tendré suerte" (+$1.000)
                 </label>
             </div>
         </div>
         <div class="mt-3">
-            <p>Total: <span id="total">$2,000</span></p>
+            <p>Total: <span id="total">$2.000</span></p>
         </div>  
         <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" style="background-color: #0A74DA;">Jugar</button>   
     </form>
     <p class="mt-3">Para participar en el sorteo de cada domingo, asegúrate de realizar la compra de tus billetes antes de las 23:59 horas de ese mismo día. Todas las compras efectuadas dentro de ese plazo serán incluidas en el sorteo correspondiente.</p>
+  
+    @if (@session('id'))
+
+        <p>{{ session('id')}}</p>
+    @endif
 </div>
+
+
 @endsection
 
 @section('scripts')
@@ -58,6 +65,8 @@
 <script>
     document.getElementById('regForm').addEventListener('submit', function(event) {
 
+        
+
         const selectedNumbersInput = document.getElementById('selectedNumbers');
         const selectedNumbers = Array.from(document.querySelectorAll('.number-circle.selected'))
         .map(circle => circle.getAttribute('data-number'));
@@ -65,6 +74,11 @@
 
         event.preventDefault();
         
+        if(selectedNumbers.length < 5){
+            alert('Selecciona 5 números para continuar.');
+            return;
+        }
+
         Swal.fire({
             title: 'Confirmar compra',
             text: 'Has seleccionado los números: ' + selectedNumbersInput.value ,
@@ -80,6 +94,29 @@
             }
         });
     });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (Session::has('success'))
+    
+<script>
+    Swal.fire({
+      title: "Compra realizada exitosamente!",
+      text: "Tu número de boleto es: {{ session('id')}}" ,
+      icon: "success"
+    });
+@endif
+</script>
+
+@if (Session::has('error'))
+    
+<script>
+    Swal.fire({
+      title: "Error!",
+      text: "Que estás haciendo tramposo" ,
+      icon: "error"
+    });
+@endif
 </script>
 
 @endsection
