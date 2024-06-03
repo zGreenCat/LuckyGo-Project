@@ -1,39 +1,43 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-<a href="{{ route('main') }}" class="btn">Volver</a> 
-    <form id="regForm" class="max-w-sm mx-auto bg-gray-100  p-9 rounded-lg shadow-lg" method="POST" action="{{route('buyTicket')}}"  novalidate>
-    @csrf
-    <h2>Compra de billetes de lotería</h2>  
-    <div class="number-grid">
-        @for ($i = 1; $i <= 30; $i++)
-            <div class="number-circle" data-number="{{ $i }}">
-                {{ $i }}
-            </div>
-        @endfor
-    </div>
-    <input type="hidden" name="selectedNumbers" id="selectedNumbers">
-        <div class="mt-3">
-            <p>Billete: $2.000</p>
+
+<h1 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white items-center justify-center text-center">Compra de boleto de lotería</h1>
+<div class="ml-10 mt-10 justify-center">
+    <h1 class="mb-5 text-lg font-bold tracking-tight text-gray-900 dark:text-white">¿Como jugar?</h1>
+    <p class="mt-5">Si no sabes cómo jugar, aquí te explicamos brevemente los pasos a seguir:</p>
+    <p class="mt-5">1. Selecciona tus 5 números favoritos para jugar. Son solo 5, así que elige sabiamente.</p>
+    <p class="mt-5">2. Puedes seleccionar la casilla de "Tendré suerte", esto te dará más posibilidades de ganar.</p>
+    <p class="mt-5">3. Cuando estés listo con tu selección de números, presiona el botón "Jugar", confirma la compra. ¡Y listo! Ya estarás participando en el siguiente sorteo.</p>
+    <p class="mt-10 mb-10 mr-5">Para participar en el sorteo de cada domingo, asegúrate de realizar la compra de tus billetes antes de las 23:59 horas de ese mismo día. Todas las compras efectuadas dentro de ese plazo serán incluidas en el sorteo correspondiente.</p>
+    <h1 class="mb-10 mt-5 text-lg font-bold tracking-tight text-gray-900 dark:text-white">¿Listo para jugar?</h1>
+</div>
+<div class="container flex mx-auto">
+    <form id="regForm" class="max-w-lg mx-auto bg-gray-100 p-9 rounded-lg shadow-lg w-full" method="POST" action="{{ route('buyTicket') }}" novalidate>
+        @csrf
+        <h2 class="mb-7 text-lg font-bold tracking-tight text-gray-900 dark:text-white">Selecciona los números para tu boleto:</h2>
+        <div class="number-grid grid grid-cols-6 gap-4">
+            @for ($i = 1; $i <= 30; $i++)
+                <div class="number-circle flex items-center justify-center px-6 py-6 bg-white rounded-full shadow" data-number="{{ $i }}">
+                    {{ $i }}
+                </div>
+            @endfor
+        </div>
+        <input type="hidden" name="selectedNumbers" id="selectedNumbers">
+        <div class="mt-6">
+            <p class="mb-5">Billete: $2000</p>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="tendresuerte" id="tendresuerte" value="1">
                 <label class="form-check-label" for="tendresuerte">
-                    Categoría "Tendré suerte" (+$1.000)
+                    Categoría "Tendré suerte" (+$1000)
                 </label>
             </div>
         </div>
-        <div class="mt-3">
-            <p>Total: <span id="total">$2.000</span></p>
-        </div>  
-        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" style="background-color: #0A74DA;">Jugar</button>   
+        <div class="mt-5 mb-5">
+            <p>Total: <span id="total">$2000</span></p>
+        </div>
+        <button type="submit" class="text-white bg-[#0A74DA] hover:bg-[#084A91] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center transition duration-200">Jugar</button>
     </form>
-    <p class="mt-3">Para participar en el sorteo de cada domingo, asegúrate de realizar la compra de tus billetes antes de las 23:59 horas de ese mismo día. Todas las compras efectuadas dentro de ese plazo serán incluidas en el sorteo correspondiente.</p>
-  
-    @if (@session('id'))
-
-        <p>{{ session('id')}}</p>
-    @endif
 </div>
 
 
@@ -81,7 +85,7 @@
 
         Swal.fire({
             title: 'Confirmar compra',
-            text: 'Has seleccionado los números: ' + selectedNumbersInput.value ,
+            text: 'Has seleccionado los números: ' + selectedNumbersInput.value  + 'El valor de tu billete es: ',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
