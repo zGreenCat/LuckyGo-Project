@@ -1,5 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    <p>anashei</p>
+    <p></p>
     
 @endsection
