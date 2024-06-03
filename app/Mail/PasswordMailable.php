@@ -30,7 +30,7 @@ class PasswordMailable extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Password Mailable',
+            subject: 'Registro LuckyGo',
         );
     }
 
