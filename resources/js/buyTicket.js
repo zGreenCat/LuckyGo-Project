@@ -30,13 +30,6 @@
         
     }
 
-    function changeNumbersToString(){
-        const selectedNumbersInput = document.getElementById('selectedNumbers');
-        const selectedNumbers = Array.from(document.querySelectorAll('.number-circle.selected'))
-        .map(circle => circle.getAttribute('data-number'));
-        selectedNumbersInput.value = selectedNumbers.join('-');
-        document.getElementById('selectedNumbers') = selectedNumbersInput.value;
-    }
 
     
 

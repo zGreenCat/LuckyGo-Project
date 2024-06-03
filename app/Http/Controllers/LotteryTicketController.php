@@ -15,12 +15,18 @@ class LotteryTicketController extends Controller{
 
         $messages = makeMessageRegister();
         //Validar datos
+        $numbers = explode('-', $request->selectedNumbers);
+        $long = count($numbers);
+        if($long > 5){
+            return redirect()->route('buyTicket')->with('error' ,'error');
+        }
 
         //Crear ID
+
         $id = "LG" . rand(1,9) . rand(0,9) . rand(0,9);
 
-        $selectedNumbers = $request->input('selectedNumbers')[1];
-        $tendresuerte = $request->has('tendresuerte');
+        $selectedNumbers = $request->input('selectedNumbers');
+        $tendresuerte = $request->has('luck');
 
         // Crear un nuevo registro en la tabla de billetes
         LotteryTicket::create([
@@ -28,6 +34,9 @@ class LotteryTicketController extends Controller{
             'selectedNumbers' => $selectedNumbers,
       
         ]);
-        return redirect()->route('main');
+
+        //dd($numbers[0]);
+
+        return redirect()->route('buyTicket')->with('success' ,'success')->with('id' , $id);      
     }
 }

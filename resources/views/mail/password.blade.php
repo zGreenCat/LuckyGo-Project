@@ -9,11 +9,9 @@
 <body>
     <p>Hola {{$nickname}}</p>
     <p>Te has registrado correctamente</p>
-<<<<<<< HEAD
+
     <p>Contraseña generada automáticamente, no la compartas con nadie:</p>
-=======
-    <p>Contraseña generada automaticamente, no la compartas con nadie:</p>
->>>>>>> VicenteAraya
+
     <p>{{$password}}</p>
 </body>
 </html>
