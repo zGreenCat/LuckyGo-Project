@@ -25,7 +25,17 @@ class RegisterController extends Controller
         if(intval($request->age) < 18 || intval($request->age) > 65 ){return back()->with('message','La edad del sorteador no puede ser inferior a 18 y mayor a 65');}
         //Creacion contrasena aleatoria
         $password = rand(99999,999999);
-        //Creacion de usuario
+        
+        $user = $request->name;
+        //Correo con contrasena enviada
+        try {
+            
+            Mail::to($request->email)->send(new PasswordMailable($user, $password));
+        } catch (\Exception $e) {
+
+            return redirect()->route('admin.view')->with('error','error');
+        }
+
         User::create([
             'name' => $request->name,
             'email'=>$request->email,
@@ -35,10 +45,7 @@ class RegisterController extends Controller
             'stat' => true,
             'lotcant' => '0',
         ]);
-        
-        $user = $request->name;
-        //Correo con contrasena enviada
-        Mail::to($request->email)->send(new PasswordMailable($user ,$password));
+
         return redirect()->route('admin.view')->with('success','success');
         
     }
