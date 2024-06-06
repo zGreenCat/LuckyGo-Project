@@ -10,8 +10,9 @@ class LotteryTicket extends Model
     use HasFactory;
     protected $fillable = [
         'ticketID',
-        'numbersChosen',
-        
-        
+        'selectedNumbers',
+        'price',
+        'luck',
+        'date',
     ];
 }

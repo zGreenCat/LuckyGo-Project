@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\LotteryTicket;
+use Illuminate\Support\Facades\DB;
 
 class LotteryTicketController extends Controller{
 
@@ -23,16 +24,27 @@ class LotteryTicketController extends Controller{
 
         //Crear ID
 
-        $id = "LG" . rand(1,9) . rand(0,9) . rand(0,9);
+        do {
+            $id = "LG" . rand(1,9) . rand(0,9) . rand(0,9);
+        } while (DB::table('lottery_tickets')->where('ticketID', $id)->exists());
 
         $selectedNumbers = $request->input('selectedNumbers');
-        $tendresuerte = $request->has('luck');
-
+        $luck = $request->input('luck');
+        if($luck == null) $luck = false;
+        if($luck == true){
+            $price = 3000;
+        }else{
+            $price = 2000;
+        }
+ 
         // Crear un nuevo registro en la tabla de billetes
         LotteryTicket::create([
+            'id' => $id,
             'ticketID' => $id,
             'selectedNumbers' => $selectedNumbers,
-      
+            'price' => $price,
+            'luck' => $luck,
+
         ]);
 
         //dd($numbers[0]);

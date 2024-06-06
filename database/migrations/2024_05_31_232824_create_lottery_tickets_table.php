@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('ticketID');
             $table->string('selectedNumbers')->default(false);
+            $table->integer('price');
+            $table->boolean('luck');
+            $table->timestamp('date');
             $table->timestamps();
         });
     }
