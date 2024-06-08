@@ -14,5 +14,11 @@ class LotteryTicket extends Model
         'price',
         'luck',
         'date',
+        'rafflesid',
     ];
+
+    public function raffle()
+    {
+        return $this->belongsTo('App\Models\Raffle');
+    }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\auth\LogoutController;
 use App\Http\Controllers\auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LotteryTicketController;
+use App\Http\Controllers\SorterController;
 
 //Vista principal
 Route::get('/', function () {
@@ -42,9 +43,7 @@ Route::middleware('auth')->group(function(){
         return view('sorter.lottery');
     })->name('sorter.lottery');
     Route::post('admin/edit/{id}',[AdminController::class,'changeStat'])->name('admin.change');
-    Route::get('sorter.view', function () {
-        return view('sorter.index');
-    })->name('sorter.view');
+    Route::get('admin.view',[SorterController::class,'index'])->name('sorter.view');
 });
 
 //Vista Comprar Ticket

@@ -18,7 +18,10 @@ return new class extends Migration
             $table->integer('price');
             $table->boolean('luck');
             $table->timestamp('date');
+            $table->unsignedBigInteger('rafflesid');
             $table->timestamps();
+
+            $table->foreign('rafflesid')->references('id')->on('raffles')->onDelete('cascade');
         });
     }
 

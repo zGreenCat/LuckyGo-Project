@@ -27,7 +27,12 @@ class LoginController extends Controller
         {
             return redirect()->route('admin.view');
         }
-        else return redirect()->route('sorter.view');
+        else{
+            if($user[0]->stat==0){
+                return back()->with('message','El usuario esta deshabilitado');
+            }
+            return redirect()->route('sorter.view');
+        } 
         
     }
 }
