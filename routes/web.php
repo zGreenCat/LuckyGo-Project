@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function(){
         return view('sorter.lottery');
     })->name('sorter.lottery');
     Route::post('admin/edit/{id}',[AdminController::class,'changeStat'])->name('admin.change');
-    Route::get('admin.view',[SorterController::class,'index'])->name('sorter.view');
+    Route::get('sorter.view',[SorterController::class,'index'])->name('sorter.view');
 });
 
 //Vista Comprar Ticket

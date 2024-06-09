@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('raffles', function (Blueprint $table) {
             $table->id();
             $table->date('sunday');
-            $table->boolean('stat');
+            $table->integer('stat');
             $table->integer('cant_tickets');
             $table->integer('cant_tickets_luck');
             $table->string('emal_sorter')->nullable();

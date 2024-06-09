@@ -35,25 +35,24 @@ class LotteryTicketController extends Controller{
         $luck = $request->input('luck');
         
         $currentDate = new \DateTime();
-        $currentDayOfWeek = $currentDate->format('w'); 
-
+        $dayOfWeek = $currentDate->format('N'); 
         
-        $daysUntilNextSunday = 7 - $currentDayOfWeek;
 
-      
-        if ($daysUntilNextSunday == 0) {
-            $daysUntilNextSunday = 7;
+        if ($dayOfWeek != 7) {
+            
+            $currentDate->modify('next sunday');
         }
+        $nextSunday = $currentDate->format('Y-m-d');
 
-        $currentDate->modify('+' . $daysUntilNextSunday . ' days');
-        $formtedDate = $currentDate->format('Y-m-d');
-        $raffle = Raffle::where('sunday', $formtedDate)->first();
-        
+        $raffle = Raffle::where('sunday', $nextSunday)->first();
+        //Si el sorteo esta abierto es 1
+        //Si el sorteo esta no realizado (se paso la fecha pero ningun sorteador lo registra todavia) es -1
+        //Si el sorteo se realizo y se registro es 0
         if(!$raffle)
         {
             $raffle=Raffle::create([
-                'sunday'=> $formtedDate,
-                'stat' => true,
+                'sunday'=> $nextSunday,
+                'stat' => 1,
                 'cant_tickets' => 0,
                 'cant_tickets_luck' => 0,
             ]);
