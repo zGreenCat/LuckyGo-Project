@@ -39,11 +39,9 @@ Route::middleware('auth')->group(function(){
     })->name('admin.register');
     //Vista Controlador Registrar
     Route::post('admin/register',[RegisterController::class,'store'])->name('register.store');
-    Route::get('sorter/register/lottery', function () {
-        return view('sorter.lottery');
-    })->name('sorter.lottery');
     Route::post('admin/edit/{id}',[AdminController::class,'changeStat'])->name('admin.change');
     Route::get('sorter.view',[SorterController::class,'index'])->name('sorter.view');
+    Route::post('/sorter/register',[SorterController::class,'registerRaffle'])->name('sorter.register');
 });
 
 //Vista Comprar Ticket

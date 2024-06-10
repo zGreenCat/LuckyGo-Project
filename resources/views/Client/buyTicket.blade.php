@@ -35,7 +35,7 @@
         <div class="mt-5 mb-5">
             <p>Total: <span id="total">$2.000</span></p>
         </div>
-        <button type="submit" class="text-white bg-[#0A74DA] hover:bg-[#084A91] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center transition duration-200">Jugar</button>
+        <button type="submit" class="text-white bg-[#0A74DA] hover:bg-[#084A91] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center transition duration-200">Guardar</button>
     </form>
 </div>
 

@@ -13,6 +13,8 @@ class Raffle extends Model
         'stat',
         'cant_tickets',
         'cant_tickets_luck',
+        'won',
+        'won_luck',
         'emal_sorter',
     ];
 

@@ -42,7 +42,7 @@ class LotteryTicketController extends Controller{
             
             $currentDate->modify('next sunday');
         }
-        $nextSunday = $currentDate->format('Y-m-d');
+        $nextSunday =  $currentDate->format('Y-m-d');
 
         $raffle = Raffle::where('sunday', $nextSunday)->first();
         //Si el sorteo esta abierto es 1

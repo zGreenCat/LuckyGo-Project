@@ -13,12 +13,10 @@ class SorterController extends Controller
         $raffles = Raffle::orderBy('sunday')->get();
         $now = new \DateTime();
         $dayOfWeek = $now->format('w');
-        if ($dayOfWeek == 0) {
-            $daysToSubtract = 7;
-        } else {
-            $daysToSubtract = $dayOfWeek;
-        }
-        $now->modify("-$daysToSubtract days");
+        if ($now->format('w') != 0) {
+            $now->modify('next Sunday');
+        } 
+        
         $formatedLastSunday = $now->format('Y-m-d');
         foreach($raffles as $raffle)
         {
@@ -31,5 +29,9 @@ class SorterController extends Controller
         return view('sorter.index',[
             'raffles'=> $raffles
         ]);
+    }
+    public function registerRaffle(Request $request)
+    {
+        dd($request);
     }
 }
