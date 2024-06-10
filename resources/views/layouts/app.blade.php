@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>LUCKY GO</title>
     @vite(['resources/css/app.css','resources/js/app.js'])
-    @vite(['resources/js/buyTicket.js'])
+    
 </head>
 <body>
   @auth

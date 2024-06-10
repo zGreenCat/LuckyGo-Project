@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+@vite(['resources/js/buyTicket.js'])
 <h1 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white items-center justify-center text-center">Compra de billete de lotería</h1>
 <div class="ml-10 mt-10 justify-center">
     <h1 class="mb-5 text-lg font-bold tracking-tight text-gray-900 dark:text-white">¿Cómo jugar?</h1>

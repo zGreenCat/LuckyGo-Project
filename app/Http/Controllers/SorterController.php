@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Raffle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class SorterController extends Controller
 {
@@ -32,6 +34,18 @@ class SorterController extends Controller
     }
     public function registerRaffle(Request $request)
     {
-        dd($request);
+        $user = Auth::user();
+        $raffle = Raffle::where('sunday', $request->sunday)->first();
+        $raffle->won = $request->selectedNumbers1;
+        $raffle->sorter_name = $user->name;
+        $raffle->stat = 0;
+        $raffle->save();
+        if($raffle->cant_tickets_luck>0)
+        {
+            $raffle->won_luck = $request->selectedNumbers2;
+            $raffle->save();
+        }
+        return redirect()->route('sorter.view');
     }
 }
+

@@ -46,62 +46,68 @@
 
 <!-- Contenedor del formulario de edición -->
 <div id="overlay" class="overlay" ></div>
-<div id="editFormContainer" class="hidden fixed-form rounded-lg ">
-  <div class="form-wrapper flex justify-center">
-    <form id="regForm1" class="p-4 rounded-lg w-full mx-2" method="POST" action="{{route('sorter.register')}}" novalidate>
+<div id="editFormContainer" class="hidden fixed-form rounded-lg">
+    <div class="form-wrapper flex justify-center">
+      <form id="regForm1" class="p-4 rounded-lg w-full mx-2" method="POST" action="{{ route('sorter.register') }}" novalidate>
         @csrf
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <input type="hidden" name="sunday" id="sundayInput1">
-      <h2 class="mb-7 text-lg font-bold tracking-tight text-gray-900 dark:text-white justify-center flex">Sorteo</h2>
-      <div class="number-grid grid grid-cols-5 gap-4">
-          @for ($i = 1; $i <= 30; $i++)
-          <div class="number-square flex items-center justify-center px-4 py-4 bg-gray-100" data-number="{{ $i }}" onclick="selectNumber(this)">
-              {{ $i }}
-          </div>
-          @endfor
-      </div>
-      <input type="hidden" name="selectedNumbers" id="selectedNumbers1">
-      <div class="flex justify-end mt-4">
-          <button style="background-color:#2ECC71" type="submit" class="px-4 py-2 text-white rounded" onclick="submitForm(this)">Guardar</button>
-      </div>
-  </form>
-
-      <form id="regForm2" class="p-4 rounded-lg w-full mx-2" method="POST" action="{{route('sorter.register')}}" novalidate>
-          @csrf
-          <h2 class="mb-7 text-lg font-bold tracking-tight text-gray-900 dark:text-white justify-center flex">Tendre Suerte</h2>
-          <div class="number-grid grid grid-cols-5 gap-4">
-              @for ($j = 1; $j <= 30; $j++)
-              <div class="number-square2 flex items-center justify-center px-4 py-4 bg-gray-100" data-number2="{{ $j }}" onclick="selectNumber2(this)">
-                  {{ $j }}
+        <div class="flex justify-between">
+          <div class="section sorteo">
+            <h2 class="mb-7 text-lg font-bold tracking-tight text-gray-900 dark:text-white justify-center flex">Sorteo</h2>
+            <div class="number-grid grid grid-cols-5 gap-4">
+              @for ($i = 1; $i <= 30; $i++)
+              <div class="number-square flex items-center justify-center px-4 py-4 bg-gray-100" data-number="{{ $i }}" onclick="selectNumber(this)">
+                {{ $i }}
               </div>
               @endfor
+            </div>
+            <input type="hidden" name="selectedNumbers1" id="selectedNumbers1">
+            <input type="hidden" name="selectedNumbers2" id="selectedNumbers2">
           </div>
-          <input type="hidden" name="selectedNumbers2" id="selectedNumbers2">
-          <div class="flex justify-between mt-4">
-           
-              <button style="background-color:#F56558" type="button" class="px-4 py-2 text-white rounded" onclick="cancelForm(this)">Cancelar</button>
+          <div class="section tendre-suerte">
+            <h2 class="mb-7 text-lg font-bold tracking-tight text-gray-900 dark:text-white justify-center flex">Tendre Suerte</h2>
+            <div class="number-grid grid grid-cols-5 gap-4">
+              @for ($j = 1; $j <= 30; $j++)
+              <div class="number-square2 flex items-center justify-center px-4 py-4 bg-gray-100" data-number2="{{ $j }}" onclick="selectNumber2(this)">
+                {{ $j }}
+              </div>
+              @endfor
+            </div>
+            
           </div>
+        </div>
+        <div class="flex justify-between mt-4">
+          <button style="background-color:#2ECC71" type="button" class="px-4 py-2 text-white rounded" onclick="submitForm(this)">Guardar</button>
+          <button style="background-color:#F56558" type="button" class="px-4 py-2 text-white rounded" onclick="cancelForm(this)">Cancelar</button>
+        </div>
       </form>
-  </div>
+    </div>
 </div>
+
+
+
 <div id="overlay2" class="overlay2 " ></div>
 <div id="editFormContainer2" class="hidden fixed-form rounded-lg ">
     <div class="form-wrapper flex justify-center">
-      <form id="regForm3" class="p-4 rounded-lg w-full mx-2" method="POST" action="{{route('sorter.register')}}" novalidate>
+      <form id="regForm2" class="p-4 rounded-lg w-full mx-2" method="POST" action="{{route('sorter.register')}}" novalidate>
           @csrf
           <input type="hidden" name="sunday" id="sundayInput2">
         <h2 class="mb-7 text-lg font-bold tracking-tight text-gray-900 dark:text-white justify-center flex">Sorteo</h2>
         <div class="number-grid grid grid-cols-5 gap-4">
             @for ($i = 1; $i <= 30; $i++)
-            <div class="number-square flex items-center justify-center px-4 py-4 bg-gray-100" data-number="{{ $i }}" onclick="selectNumber2(this)">
+            <div class="number-square flex items-center justify-center px-4 py-4 bg-gray-100" data-number="{{ $i }}" onclick="selectNumber(this)">
                 {{ $i }}
             </div>
             @endfor
         </div>
-        <input type="hidden" name="selectedNumbers" id="selectedNumbers1">
+        <input type="hidden" name="selectedNumbers1" id="selectedNumbers1">
         <div class="flex justify-end mt-4">
-            <button style="background-color:#2ECC71" type="submit" class="px-4 py-2 text-white rounded" onclick="submitForm(this)">Guardar</button>
-            <button style="background-color:#F56558" type="button" class="px-4 py-2 text-white rounded" onclick="cancelForm(this)">Cancelar</button>
+            <button style="background-color:#2ECC71" type="button" class="px-4 py-2 text-white rounded" onclick="submitForm2(this)">Guardar</button>
+            <button style="background-color:#F56558" type="button" class="px-4 py-2 text-white rounded" onclick="cancelForm2(this)">Cancelar</button>
         </div>
     </form>
 </div>
 @endsection
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+

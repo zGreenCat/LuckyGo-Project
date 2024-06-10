@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('cant_tickets_luck');
             $table->string('won')->nullable();
             $table->string('won_luck')->nullable();
-            $table->string('emal_sorter')->nullable();
+            $table->string('sorter_name')->nullable();
             $table->timestamps();
             
         });
