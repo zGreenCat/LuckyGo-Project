@@ -28,7 +28,7 @@
                 <td class="px-6 py-4">${{number_format($raffle->cant_tickets_luck * 1000, 0, ',', '.')}}</td>
                 <td class="px-6 py-4">${{number_format(($raffle->cant_tickets_luck * 3000) + ($raffle->cant_tickets * 2000), 0, ',', '.')}}</td>
                 @if ($raffle->stat == 1)
-                <td class="px-6 py-4">Abierto</td>
+                <td class="px-6 py-4 ">Abierto</td>
                 @elseif ($raffle->stat == 0)
                 <td class="px-6 py-4">Realizado</td>
                 @else
@@ -37,7 +37,7 @@
                     <button style="background-color:#2ECC71; margin-left: 10px; transition: background-color 0.1s;" onmouseover="this.style.backgroundColor='#27AE60'" onmouseout="this.style.backgroundColor='#2ECC71'" class="btn-edit px-3 rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 text-white" onclick="showForm('{{$raffle->sunday}}','{{$raffle->cant_tickets_luck}}')">Actualizar</button>
                 </td>
                 @endif
-                <td class="px-6 py-4">{{$raffle->emal_sorter}}</td>
+                <td class="px-6 py-4">{{ $raffle->user->name ?? '' }}    {{ $raffle->timeRegister }}</td>
             </tr>
             @endforeach
         </tbody>

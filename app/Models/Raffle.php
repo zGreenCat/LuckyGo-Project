@@ -15,7 +15,8 @@ class Raffle extends Model
         'cant_tickets_luck',
         'won',
         'won_luck',
-        'sorter_name',
+        'usersEmail',
+        'timeRegister',
     ];
 
 
@@ -23,5 +24,9 @@ class Raffle extends Model
     public function tickets()
     {
         return $this->hasMany('App\Models\LotteryTicket');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'usersEmail', 'email');
     }
 }

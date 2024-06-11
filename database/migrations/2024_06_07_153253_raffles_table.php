@@ -19,9 +19,10 @@ return new class extends Migration
             $table->integer('cant_tickets_luck');
             $table->string('won')->nullable();
             $table->string('won_luck')->nullable();
-            $table->string('sorter_name')->nullable();
+            $table->string('usersEmail')->nullable();
+            $table->Date('timeRegister')->nullable();
             $table->timestamps();
-            
+            $table->foreign('usersEmail')->references('email')->on('users')->onDelete('cascade');
         });
     }
 
