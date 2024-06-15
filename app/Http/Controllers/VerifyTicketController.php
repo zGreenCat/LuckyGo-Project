@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\VerifyTicket;
+use App\Models\LotteryTicket;
 use Illuminate\Http\Request;
+use App\Models\Raffle;
+use Illuminate\Support\Facades\DB;
 
 class VerifyTicketController extends Controller
 {
@@ -12,13 +15,9 @@ class VerifyTicketController extends Controller
      */
     public function index()
     {
-        //
-    }
-    public function verifyTicket()
-    {
-        //
         return view('client.verifyTicket');
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -34,6 +33,14 @@ class VerifyTicketController extends Controller
     public function store(Request $request)
     {
         //
+        $ticketID = $request->ticketID;
+        $ticket = LotteryTicket::where('ticketID', $ticketID)->first();
+        $raffle = Raffle::where('id', $ticket->rafflesid)->first();
+
+       
+        return view('client.verifyTicket',[
+            'ticket'=>$ticket, 'raffle'=>$raffle
+        ]);    
     }
 
     /**

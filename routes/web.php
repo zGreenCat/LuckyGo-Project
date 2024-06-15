@@ -50,4 +50,6 @@ Route::middleware('auth')->group(function(){
 //Vista Controlador Comprar Ticket
 Route::get('/buyTicket', [LotteryTicketController::class, 'showForm'])->name('buyTicket');
 Route::post('/buyTicket',[LotteryTicketController::class,'store'])->name('buyTicket.store');
-Route::get('/verifyTicket', [VerifyTicketController::class, 'verifyTicket'])->name('verifyTicket');
+
+Route::get('/verifyTicket', [VerifyTicketController::class, 'index'])->name('verifyTicket');
+Route::post('/verifyTicket', [VerifyTicketController::class, 'store'])->name('verifyTicket.store');

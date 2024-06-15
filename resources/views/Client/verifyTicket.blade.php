@@ -1,42 +1,88 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h2>Verificar Billete</h2>
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Lotería</title>
+</head>
+<body>
+   <h1>Datos de tu billete</h1>
+   <table>
+   	<tr>
+        <th>ID</th>
+   		<th>Fecha</th>
+   		<th>Números jugados</th>
 
-    @if (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
+   	</tr>
+   	<tr>
+        <td>{{$ticket->ticketID }}</td>
+   		<td>{{$ticket->date }}</td>
+   		<td>{{$ticket->selectedNumbers }}</td>
+		
+   	</tr>
+   </table>
+   <!-- Si aún no se hace el sorteo -->
+   @if ($raffle->stat == 1)
+		<h1>El sorteo aun no se hace, vuelve despues</h1>
+	<!-- Si ya se hizo el sorteo -->
+   @else
+    	<h1>Resultados del sorteo</h1>
+		<table>
+			<tr>
+				<th>Fecha del sorteo</th>
+				<th>Números Ganadores</th>
+				<th>"Tendré Suerte"</th>
+			</tr>
+			<tr>
+				<td>{{$raffle->sunday }}</td>
+				<td>{{$raffle->won }}</td>
+				<td>{{$raffle->won_luck }}</td>
+			</tr>
+		</table>
 
-    <form method="GET" action="{{ route('verifyTicket') }}">
-        <div class="form-group">
-            <label for="codigo">Código del Billete</label>
-            <input type="text" class="form-control" id="codigo" name="codigo" placeholder="Ingrese el código del billete">
-        </div>
-        <button type="submit" class="btn btn-primary">Verificar</button>
-    </form>
+		@if ($raffle->won == $ticket->selectedNumbers)
+			<h1>Haz gano xabal</h1> 
+			<h1>Premios</h1>
+			<table>
+				<tr>
+					<th>Premio sorteo principal</th>
+					<th>Premio sorteo "Tendré suerte"</th>
+				</tr>
+				<tr>
+					<td>Sin premio</td>
+					<td>Sin premio</td>
+				</tr>
+			</table>
+			
+		@else
+			<h1>perdiste</h1>
+		@endif
 
-    @if (isset($billete))
-        <div class="card mt-4">
-            <div class="card-body">
-                <h5 class="card-title">Resultado del Billete</h5>
-                <p class="card-text">Código: {{ $billete->codigo }}</p>
-                <p class="card-text">Números: {{ implode(', ', $billete->numeros) }}</p>
-                <p class="card-text">Tendré Suerte: {{ $billete->tendresuerte ? 'Sí' : 'No' }}</p>
-                @if ($sorteo->realizado)
-                    <p class="card-text">Ganador: {{ $billete->ganador ? 'Sí' : 'No' }}</p>
-                    @if ($billete->ganador)
-                        <p class="card-text">Monto Ganado: ${{ number_format($billete->monto_ganado, 0, ',', '.') }}</p>
-                    @endif
-                @else
-                    <div class="alert alert-warning">
-                        El sorteo asociado a este billete aún no ha sido realizado.
-                    </div>
-                @endif
-            </div>
-        </div>
-    @endif
-</div>
+		
+	@endif
+
+
+
+
+   
+</body>
+
+
+<style>
+	table {
+		border-collapse: collapse;
+		width: 50%;
+		margin: 0 auto;
+	}
+	th, td {
+		border: 1px solid black;
+		padding: 8px;
+		text-align: center;
+	}
+	th {
+		background-color: #f2f2f2;
+	}
+</style>
+</html>
 @endsection
