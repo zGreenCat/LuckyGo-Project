@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('lottery_tickets', function (Blueprint $table) {
             $table->id();
             $table->string('ticketID');
-            $table->string('selectedNumbers')->default(false);
+            $table->string('selectedNumbers');
             $table->integer('price');
             $table->boolean('luck');
             $table->timestamp('date');
