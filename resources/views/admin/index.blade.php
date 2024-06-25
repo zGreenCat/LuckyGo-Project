@@ -76,6 +76,9 @@
                         </svg>
                         <a class="flex">Actualizar</a>
                     </button>
+                    <button style="margin-left: 20px; transition background-color 0.1s; background-color:#2ECC71;" onmouseover="this.style.backgroundColor='#27AE60'" onmouseout="this.style.backgroundColor='#2ECC71'" class="rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 text-white flex  px-2 py-2" type="submit">
+                      <a class="flex">Actualizar</a>
+                  </button>
                       </form>
                 </td>
 
