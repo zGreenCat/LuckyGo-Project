@@ -2,9 +2,7 @@
 @section('content')
 
  <h1 class="flex space-x-4 mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white items-center justify-center text-center mt-5">¡BIENVENIDO A LUCKYGO!</h1>
- <p class="mb-10 mt-10 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400 items-center justify-center text-center">¡Bienvenido a LuckyGo, tu destino para la emoción y la fortuna! 
-    Estamos encantados de tenerte aquí mientras te adentras en el emocionante mundo de la lotería. ¿Estás listo para desafiar a la suerte y abrir las puertas hacia un futuro lleno de posibilidades? ¡Únete 
-    a la diversión en LuckyGo y deja que la fortuna te sonría!</p>
+ <p class="mb-10 mt-10 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400 items-center justify-center text-center"> Bienvenido(a) a LuckyGo. En esta sección podrás realizar la compra de billetes y consultar tus números ganadores. ¡Mucha suerte!</p>
 
  <hr style="border: 0; border-top: 1px solid #e0e0e0; margin: 20px 0;">
 
@@ -24,7 +22,7 @@
             </a>
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">¿Ya tienes un billete? Si ya tienes un billete y quieres revisar cómo te fue en el sorteo, solo necesitas tener el número de billete e ingresarlo aquí abajo.</p>
             <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                Read more
+                Ingresar billete
             
             </a>
         </div>
