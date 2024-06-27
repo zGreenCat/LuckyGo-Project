@@ -119,6 +119,7 @@
 </div>
 @endsection
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
 function toggleDropdown(button) {
     const row = button.closest('tr');
@@ -129,3 +130,15 @@ function toggleDropdown(button) {
     }
 }
 </script>
+@section('js')
+@if (Session::has('success'))
+<script>
+    Swal.fire({
+      title: "¡Cambiado!",
+      text: "Los datos han sido cambiado con exito!",
+      icon: "success"
+    }); 
+</script>
+@endif
+@endsection
+
