@@ -17,7 +17,7 @@ class RegisterController extends Controller
         $messages = makeMessageRegister();
         //Validar datos
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|max:255',
             'email' => ['required','email', 'unique:users'],
             'age'=> 'required'
         ],$messages);

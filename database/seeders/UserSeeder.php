@@ -25,5 +25,17 @@ class UserSeeder extends Seeder
             'remember_token' => Str::random(10)
         ];
         DB::table('users')->insert($data);
+        $data = [
+            'name' => 'Vicente Araya Rojas',
+            'email' => 'vicente.araya9821@gmail.com',
+            'password' => Hash::make('1'),
+            'age' => 20,
+            'role' => 'S',
+            'stat' => true,
+            'lotcant' => '0',
+            'remember_token' => Str::random(10)
+        ];
+        DB::table('users')->insert($data);
+
     }
 }

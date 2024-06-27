@@ -6,6 +6,7 @@ use App\Http\Controllers\auth\LogoutController;
 use App\Http\Controllers\auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LotteryTicketController;
+use App\Http\Controllers\SorterController;
 
 //Vista principal
 Route::get('/', function () {
@@ -38,13 +39,13 @@ Route::middleware('auth')->group(function(){
     })->name('admin.register');
     //Vista Controlador Registrar
     Route::post('admin/register',[RegisterController::class,'store'])->name('register.store');
-    Route::get('sorter/register/lottery', function () {
-        return view('sorter.lottery');
-    })->name('sorter.lottery');
     Route::post('admin/edit/{id}',[AdminController::class,'changeStat'])->name('admin.change');
-    Route::get('sorter.view', function () {
-        return view('sorter.index');
-    })->name('sorter.view');
+    Route::get('sorter.view',[SorterController::class,'index'])->name('sorter.view');
+    Route::post('/sorter-register',[SorterController::class,'registerRaffle'])->name('sorter.register');
+    Route::get('sorter-change', function () {
+        return view('sorter.changeData');
+    })->name('sorter.change');
+    Route::post('sorter-change',[SorterController::class,'store'])->name('sorter.data');
 });
 
 //Vista Comprar Ticket
