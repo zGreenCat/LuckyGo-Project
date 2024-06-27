@@ -9,7 +9,6 @@
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
             </svg>
         </div>
-
         <input type="form-control" name="search" id="search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingrese nombre o correo electrónico"  />
         <button style="background-color:#0A74DA; transition: background-color 0.1s;" onmouseover="this.style.backgroundColor='#074f9d'" onmouseout="this.style.backgroundColor='#0A74DA'" type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-1000 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buscar</button>
 
@@ -70,8 +69,17 @@
                             <option value="true" @if($user->stat) selected @endif>Habilitado</option>
                             <option value="false" @if(!$user->stat) selected @endif>Deshabilitado</option>
                         </select>
-                        <button style="background-color:#2ECC71; margin-left: 10px; transition: background-color 0.1s;" onmouseover="this.style.backgroundColor='#27AE60'" onmouseout="this.style.backgroundColor='#2ECC71'" class="px-3 rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 text-white" type="submit">Actualizar</button>
-                    </form>
+                      <button style="margin-left: 20px; transition background-color 0.1s; background-color:#2ECC71;" onmouseover="this.style.backgroundColor='#27AE60'" onmouseout="this.style.backgroundColor='#2ECC71'" class="rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 text-white flex  px-2 py-2" type="submit">
+                        <svg width="20" height="20" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="1 0 16 14">
+                            <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
+                            <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
+                        </svg>
+                        <a class="flex">Actualizar</a>
+                    </button>
+                    <button style="margin-left: 20px; transition background-color 0.1s; background-color:#2ECC71;" onmouseover="this.style.backgroundColor='#27AE60'" onmouseout="this.style.backgroundColor='#2ECC71'" class="rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 text-white flex  px-2 py-2" type="submit">
+                      <a class="flex">Actualizar</a>
+                  </button>
+                      </form>
                 </td>
 
                 </tr> 
@@ -82,10 +90,8 @@
       </div>    
       @else
       <div class="flex justify-center">
-
         <p style="background-color:#F56558" class=" text-white my-2 rounded-lg text-lg text-center p-2">No hay sorteadores en sistema </p>    
       </div>
-        
       @endif
 
 @endsection
