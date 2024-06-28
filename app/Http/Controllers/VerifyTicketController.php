@@ -32,12 +32,21 @@ class VerifyTicketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = makeMessageVerifyTicket();
+        //Validar datos
+        $request->validate([
+            'ticketID' => 'required|exists:lottery_tickets,ticketID',
+        ],$messages);
+
+        
         $ticketID = $request->ticketID;
         $ticket = LotteryTicket::where('ticketID', $ticketID)->first();
         $raffle = Raffle::where('id', $ticket->rafflesid)->first();
 
-       
+        if ($raffle->stat == 1 ||$raffle->stat == -1){
+            return back()->with('message','Este sorteo aún no es realizado');
+        }
+        
         return view('client.verifyTicket',[
             'ticket'=>$ticket, 'raffle'=>$raffle
         ]);    

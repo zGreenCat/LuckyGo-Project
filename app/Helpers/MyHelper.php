@@ -21,3 +21,13 @@ function makeMessageRegister()
     ];
     return $messages;
 }
+
+function makeMessageVerifyTicket()
+{
+    $messages = [
+        'ticketID.required' => 'Debe ingresar un numero de ticket',
+        'ticketID.exists' => 'El número de ticket no existe',
+
+    ];
+    return $messages;
+}

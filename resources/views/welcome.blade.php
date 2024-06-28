@@ -22,8 +22,15 @@
                 @csrf
                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">¿Ya tienes un billete? Si ya tienes un billete y quieres revisar cómo te fue en el sorteo, solo necesitas tener el número de billete e ingresarlo aquí abajo.</p>
                 <div class="form-group">
-                    <label for="ticketID">Ingrese el codigo de su billete</label>
-                    <input type="text" class="form-control" id="ticketID" name="ticketID" placeholder="LG123">
+                    <label for="ticketID">Ingrese el codigo de su billete</label>      
+                    
+                    <input type="text" class="form-control" id="ticketID" name="ticketID" placeholder="LG123" maxlength="5">
+                    @error('ticketID')
+                        <p style="background-color:#F6686B" class=" text-white my-2 rounded-lg text-sm text-center p-2">{{$message}}</p>
+                    @enderror
+                    @if (@session('message'))
+                        <p style="background-color:#F6686B" class=" text-white my-2 rounded-lg text-sm text-center p-2">{{ session('message')}}</p>    
+                     @endif
                 </div>
                 <button type="submit" class="text-white bg-[#0A74DA] hover:bg-[#084A91] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center transition duration-200" >Verificar billete</button>
             </form>
@@ -31,3 +38,4 @@
     </div>
 
 @endsection
+

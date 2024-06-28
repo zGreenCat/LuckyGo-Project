@@ -41,8 +41,8 @@
 			</tr>
 		</table>
 
-		@if ($raffle->won == $ticket->selectedNumbers)
-			<h1>Haz gano xabal</h1> 
+		@if ($raffle->won == $ticket->selectedNumbers || $raffle->won_luck == $ticket->selectedNumbers)
+			<h1>Haz ganao </h1> 
 			<h1>Premios</h1>
 			<table>
 				<tr>
@@ -50,22 +50,24 @@
 					<th>Premio sorteo "Tendré suerte"</th>
 				</tr>
 				<tr>
-					<td>Sin premio</td>
-					<td>Sin premio</td>
+
+					@if ($ticket->luck)
+						<td>Sin premio</td>
+						<td>${{($raffle->cant_tickets_luck*3000)}}</td>
+					@else
+						<td>${{($raffle->cant_tickets*2000)}}</td>
+						<td>Sin premio</td>
+					@endif
+
+					
 				</tr>
+				
 			</table>
 			
 		@else
 			<h1>perdiste</h1>
 		@endif
-
-		
 	@endif
-
-
-
-
-   
 </body>
 
 
