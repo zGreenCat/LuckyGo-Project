@@ -10,7 +10,7 @@ function selectNumber2(element) {
     if(selectedNumbers2.length == 5 && !element.classList.contains('selected')){
         Swal.fire({
             title: 'Sigue las instrucciones',
-            html: '<div>La loteria se gana solo con 5 numeros!',
+            html: '<div>¡La lotería se gana solo con 5 números!',
             icon: 'error',
             confirmButtonColor: 'f56558',
             confirmButtonText: 'Entendido'
@@ -34,7 +34,7 @@ function selectNumber(element) {
     if(selectedNumbers.length == 5 && !element.classList.contains('selected')){
         Swal.fire({
             title: 'Sigue las instrucciones',
-            html: '<div>La loteria se gana solo con 5 numeros!',
+            html: '<div>¡La lotería se gana solo con 5 números!',
             icon: 'error',
             confirmButtonColor: 'f56558',
             confirmButtonText: 'Entendido'
@@ -50,19 +50,22 @@ function selectNumber(element) {
     
   }
   function showForm(sunday,cant_luck) {
-       if(cant_luck > 0){
-            document.getElementById('editFormContainer').classList.remove('hidden');
-            document.getElementById('sundayInput1').value = sunday;
-       }else {
-            document.getElementById('editFormContainer2').classList.remove('hidden');
-            document.getElementById('sundayInput2').value = sunday;
-       }
-        document.querySelectorAll('.form-wrapper form').forEach(form => {
-            form.setAttribute('data-sunday', sunday);
-    });
-  }
+    if(cant_luck > 0){
+         document.getElementById('editFormContainer').classList.remove('hidden');
+         document.getElementById('sundayInput1').value = sunday;
+         
+    }else {
+         document.getElementById('editFormContainer2').classList.remove('hidden');
+         document.getElementById('sundayInput2').value = sunday;
+    }
+    document.getElementById('overlay').style.display = 'block';
+     document.querySelectorAll('.form-wrapper form').forEach(form => {
+         form.setAttribute('data-sunday', sunday);
+        });
+    }
 
   function cancelForm() {
+    document.getElementById('overlay').style.display = 'none';
     const form = document.getElementById('regForm1');
     let selectedNumbers = form.querySelectorAll('.number-square.selected');
     selectedNumbers.forEach(el => el.classList.remove('selected'));
@@ -78,6 +81,7 @@ function selectNumber(element) {
     document.getElementById('overlay2').style.display2 = 'none';
   }
   function cancelForm2() {
+    document.getElementById('overlay').style.display = 'none';
     const form = document.getElementById('regForm2');
     let selectedNumbers = form.querySelectorAll('.number-square.selected');
     selectedNumbers.forEach(el => el.classList.remove('selected'));
@@ -102,7 +106,7 @@ function selectNumber(element) {
         selectedNumbersInput2.value = selectedNumbers2.join('-');
         Swal.fire({
             title: 'Confirmar registro',
-            html: '<div>Has seleccionado los números: '+ selectedNumbersInput.value +'<br />Y para tendre suerte: '+selectedNumbersInput2.value+'<br/></div>',
+            html: '<div>Has seleccionado los números: '+ selectedNumbersInput.value +'<br />Y para tendré suerte: '+selectedNumbersInput2.value+'<br/></div>',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

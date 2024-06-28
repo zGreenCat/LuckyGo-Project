@@ -64,7 +64,7 @@ class SorterController extends Controller
         $raffle->won = $request->selectedNumbers1;
         $raffle->usersEmail = $user->email;
         $raffle->stat = 0;
-        $raffle->timeRegister = $now->format('Y-m-d H:i:s');
+        $raffle->updated_at = $now->format('Y-m-d H:i:s');
         $raffle->save();
         if($raffle->cant_tickets_luck>0)
         {
