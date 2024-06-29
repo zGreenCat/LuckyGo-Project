@@ -1,7 +1,6 @@
 <?php
 
 namespace Tests\Unit;
-
 use App\Models\LotteryTicket;
 use App\Models\Raffle;
 use App\Models\User;
