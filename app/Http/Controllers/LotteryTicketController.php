@@ -73,17 +73,16 @@ class LotteryTicketController extends Controller{
             $price = 2000;
         }
 
- 
-        //Crear un nuevo registro en la tabla de billetes
+
         LotteryTicket::create([
             'ticketID' => $id,
             'selectedNumbers' => $selectedNumbers,
             'price' => $price,
             'luck' => $luck,
             'rafflesid' => $raffle->id,
+            'date' => new \DateTime(),
         ]);
 
-        //dd($numbers[0]);
 
         return redirect()->route('buyTicket')->with('success' ,'success')->with('id' , $id);      
     }

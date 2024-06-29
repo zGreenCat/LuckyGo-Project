@@ -37,13 +37,12 @@
 				  <th class="bg-[#0a74da] text-white uppercase font-bold p-3 text-center w-1/3">Números Ganadores</th>
 				  <th class="bg-[#0a74da] text-white uppercase font-bold p-3 text-center w-1/3">"Tendré Suerte"</th>
 				</tr>
-					@if ($ticket->luck)
-						<td>Sin premio</td>
-						<td>${{($raffle->cant_tickets_luck*3000)/$ticketCountWon}}</td>
-					@else
-						<td>${{($raffle->cant_tickets*2000)/$ticketCount}}</td>
-						<td>Sin premio</td>
-					@endif
+					<tr class="even:bg-gray-100">
+					<td class="p-3 text-center">{{$raffle->sunday}}</td>
+					<td class="p-3 text-center">{{$raffle->won}}</td>
+					<td class="p-3 text-center">{{$raffle->won_luck}}</td>
+				  </tr>
+					
 				</tr>
 			  </table>
 	  
@@ -58,13 +57,16 @@
 					  <th class="bg-[#0a74da] text-white uppercase font-bold p-3 text-center w-1/2">Premio Sorteo "Tendré Suerte"</th>
 					</tr>
 					<tr class="even:bg-gray-100">
-					  @if ($ticket->luck)
-						<td class="p-3 text-center">Sin premio</td>
-						<td class="p-3 text-center">${{number_format($raffle->cant_tickets_luck*3000, 0, ',', '.')}}</td>
+					  @if ($raffle->won == $ticket->selectedNumbers)
+						<td class="p-3 text-center">${{number_format(($raffle->cant_tickets_luck*2000)/$ticketCountWon, 0, ',', '.')}}</td>
 					  @else
-						<td class="p-3 text-center">${{number_format($raffle->cant_tickets*2000, 0, ',', '.')}}</td>
 						<td class="p-3 text-center">Sin premio</td>
 					  @endif
+					  @if ($ticket->luck && $raffle->won_luck == $ticket->selectedNumbers)
+					  <td class="p-3 text-center">${{number_format(($raffle->cant_tickets_luck*1000)/$ticketCountWon, 0, ',', '.')}}</td>
+						@else
+					  <td class="p-3 text-center">Sin premio</td>
+					@endif
 					</tr>
 				  </table>
 			  @else
@@ -78,6 +80,21 @@
 		</div>
 	  </div>
 </body>
+@if ($raffle->won == $ticket->selectedNumbers || $raffle->won_luck == $ticket->selectedNumbers)
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+<script>
+	window.onload = function() {
+
+		confetti({
+			particleCount: 100,
+			spread: 70,
+			origin: { y: 0.6 }
+		});
+	};
+</script>
+
+@endif
+
 <style>
 	table {
 		border-collapse: collapse;

@@ -14,7 +14,7 @@ class SorterController extends Controller
 {
     public function index()
     {
-        $raffles = Raffle::orderBy('sunday')->with('user')->get();
+        $raffles = Raffle::orderBy('sunday','asc')->with('user')->get();
         $now = new \DateTime();
         $dayOfWeek = $now->format('w');
         if ($now->format('w') != 0) {

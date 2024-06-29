@@ -44,7 +44,7 @@ class VerifyTicketController extends Controller
         $raffle = Raffle::where('id', $ticket->rafflesid)->first();
 
         if ($raffle->stat == 1 ||$raffle->stat == -1){
-            return back()->with('message','Este sorteo aún no es realizado');
+            return back()->with('message','El sorteo asociado a este billete aún no ha sido realizado.');
         }
         if($raffle->won == $ticket->selectedNumbers || $raffle->won_luck == $ticket->selectedNumbers)
         {

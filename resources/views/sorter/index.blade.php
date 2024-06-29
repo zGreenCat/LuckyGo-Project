@@ -5,10 +5,9 @@
 <!-- Tabla con datos -->
 @if ($raffles->count()>0)
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-  <table id="dataTable" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
+  <table id="dataTable" class="w-full text-sm text-center rtl:text-center text-gray-500 dark:text-gray-400 ">
       <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
-              <th scope="col" class="px-6 py-3">#</th>
               <th scope="col" class="px-6 py-3">Fecha del sorteo</th>
               <th scope="col" class="py-3">Cantidad de Billetes</th>
               <th scope="col" class="px-6 py-3">Subtotal de Billetes</th>
@@ -21,8 +20,7 @@
       <tbody id="tableBody">
           <!-- Filas de datos aquí -->
           @foreach ($raffles as $raffle)
-          <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{$raffle->id}}</th>
+          <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 items-center">
               <td class="px-6 py-4">{{$raffle->sunday}}</td>
               <td class="py-4">{{$raffle->cant_tickets + $raffle->cant_tickets_luck}}</td>
               <td class="px-6 py-4">${{number_format(($raffle->cant_tickets + $raffle->cant_tickets_luck) * 2000, 0, ',', '.')}}</td>
@@ -34,7 +32,7 @@
               <td class="px-6 py-4">Realizado</td>
               <td class="py-3">{{ $raffle->user->name ?? '' }}    {{ $raffle->updated_at}}</td>
               @else
-              <td class="px-6 py-4 flex items-center">
+              <td class="px-6 py-4 flex items-center justify-center ml-4">
                   No realizado
                   <button title="Realizar sorteo" style="transition color 0.1s; color:#2ECC71;" onmouseover="this.style.color='#27AE60'" onmouseout="this.style.color='#2ECC71'" onclick="showForm('{{$raffle->sunday}}','{{$raffle->cant_tickets_luck}}')"  class="rounded-lg focus:outline-none focus:ring-blue-300 text-white px-2 py-2" type="submit">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">

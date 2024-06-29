@@ -16,7 +16,7 @@ class RaffleSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create();
-        for ($i=0; $i <4 ; $i++) { 
+        for ($i=0; $i <20 ; $i++) { 
             do {
                 $timestamp = mt_rand(strtotime('-1 year'), strtotime('now'));
                 $date = date('Y-m-d', $timestamp);

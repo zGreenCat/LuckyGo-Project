@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
 <div>
   <form method="get" action="{{route('search.admin')}}" class="max-w-md mx-auto">   
     <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
@@ -17,7 +18,7 @@
 </div>
       @if ($users->count()>0) 
       <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <table class="w-full text-sm  rtl:text-right text-gray-500 dark:text-gray-400 items-center justify-center text-center">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
@@ -35,17 +36,18 @@
                     <th scope="col" class="px-6 py-3">
                       Cantidad de sorteos
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 ">
                         Estado
                     </th>
                 </tr>
             </thead>
             <tbody>
+              
               @foreach ($users as $user)
               @if ($user->role =='S')
                 <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                   <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                      {{$user->id-1}}
+                    {{$i++}}
                   </th>
                   <td class="px-6 py-4">
                     {{$user->name}}
@@ -61,20 +63,23 @@
                   </td>
                   <td class="px-6 py-4">
 
-                    <form action="{{ route('admin.change', ['id' => $user->id]) }}" method="POST" style="display: flex; align-items: center;">
+                    <form action="{{ route('admin.change', ['id' => $user->id]) }}" method="POST" style="display: flex; align-items: center;" class="items-center justify-center text-center">
                         @csrf
                         <select name="estado">
                             <option value="true" @if($user->stat) selected @endif>Habilitado</option>
                             <option value="false" @if(!$user->stat) selected @endif>Deshabilitado</option>
                         </select>
-                      <button style="margin-left: 20px; transition background-color 0.1s; background-color:#2ECC71;" onmouseover="this.style.backgroundColor='#27AE60'" onmouseout="this.style.backgroundColor='#2ECC71'" class="rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 text-white flex  px-2 py-2" type="submit">
-                        <svg width="20" height="20" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="1 0 16 14">
-                            <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
-                            <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
-                        </svg>
-                        <a class="flex">Actualizar</a>
-                    </button>
-                      </form>
+                      
+                </td>
+                <td class="px-6 py-4">
+                  <button style="margin-left: 20px; transition background-color 0.1s; background-color:#2ECC71;" onmouseover="this.style.backgroundColor='#27AE60'" onmouseout="this.style.backgroundColor='#2ECC71'" class="rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 text-white flex  px-2 py-2" type="submit">
+                    <svg width="20" height="20" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="1 0 16 14">
+                        <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
+                        <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
+                    </svg>
+                    <a class="flex">Actualizar</a>
+                </button>
+                  </form>
                 </td>
 
                 </tr> 
