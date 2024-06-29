@@ -25,6 +25,7 @@ class UserSeeder extends Seeder
             'remember_token' => Str::random(10)
         ];
         DB::table('users')->insert($data);
+        
         $data = [
             'name' => 'Vicente Araya Rojas',
             'email' => 'vicente.araya9821@gmail.com',

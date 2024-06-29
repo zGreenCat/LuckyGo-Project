@@ -37,10 +37,13 @@
 				  <th class="bg-[#0a74da] text-white uppercase font-bold p-3 text-center w-1/3">Números Ganadores</th>
 				  <th class="bg-[#0a74da] text-white uppercase font-bold p-3 text-center w-1/3">"Tendré Suerte"</th>
 				</tr>
-				<tr class="even:bg-gray-100">
-				  <td class="p-3 text-center">{{$raffle->sunday}}</td>
-				  <td class="p-3 text-center">{{$raffle->won}}</td>
-				  <td class="p-3 text-center">{{$raffle->won_luck}}</td>
+					@if ($ticket->luck)
+						<td>Sin premio</td>
+						<td>${{($raffle->cant_tickets_luck*3000)/$ticketCountWon}}</td>
+					@else
+						<td>${{($raffle->cant_tickets*2000)/$ticketCount}}</td>
+						<td>Sin premio</td>
+					@endif
 				</tr>
 			  </table>
 	  

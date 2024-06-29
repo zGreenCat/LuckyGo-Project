@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 @section('content')
  <h1 class="flex space-x-4 mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white items-center justify-center text-center mt-5">¡BIENVENIDO A LUCKYGO!</h1>
@@ -32,4 +33,3 @@
     </div>
 </div>
 @endsection
-
