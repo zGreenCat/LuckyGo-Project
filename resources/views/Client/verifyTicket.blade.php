@@ -53,9 +53,9 @@
 
 					@if ($ticket->luck)
 						<td>Sin premio</td>
-						<td>${{($raffle->cant_tickets_luck*3000)}}</td>
+						<td>${{($raffle->cant_tickets_luck*3000)/$ticketCountWon}}</td>
 					@else
-						<td>${{($raffle->cant_tickets*2000)}}</td>
+						<td>${{($raffle->cant_tickets*2000)/$ticketCount}}</td>
 						<td>Sin premio</td>
 					@endif
 

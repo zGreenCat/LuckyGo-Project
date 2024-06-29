@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('selectedNumbers');
             $table->integer('price');
             $table->boolean('luck');
-            $table->timestamp('date');
+            $table->date('date');
             $table->unsignedBigInteger('rafflesid');
             $table->timestamps();
 

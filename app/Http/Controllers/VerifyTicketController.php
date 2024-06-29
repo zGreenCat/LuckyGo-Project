@@ -46,9 +46,17 @@ class VerifyTicketController extends Controller
         if ($raffle->stat == 1 ||$raffle->stat == -1){
             return back()->with('message','Este sorteo aún no es realizado');
         }
-        
+        if($raffle->won == $ticket->selectedNumbers || $raffle->won_luck == $ticket->selectedNumbers)
+        {
+            $ticketCount = LotteryTicket::where('selectedNumbers', $raffle->won)->count();
+            $ticketCountWon = LotteryTicket::where('selectedNumbers', $raffle->won)->count();
+        }else
+        {
+            $ticketCount = 0;
+            $ticketCountWon = 0;
+        }
         return view('client.verifyTicket',[
-            'ticket'=>$ticket, 'raffle'=>$raffle
+            'ticket'=>$ticket, 'raffle'=>$raffle,'ticketCount'=>$ticketCount,'ticketCountWon'=>$ticketCountWon,
         ]);    
     }
 
