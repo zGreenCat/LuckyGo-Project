@@ -1,21 +1,23 @@
 <?php
 
-namespace Database\Seeders;
-
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
+namespace Tests\Unit;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Tests\TestCase;
 use Illuminate\Support\Str;
-
-class UserSeeder extends Seeder
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+class AdminTest extends TestCase
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+    use RefreshDatabase, WithFaker;
+    public function test_example(): void
     {
-        $data = [
+        $this->assertTrue(true);
+    }
+    public function testAdminRegisterSorter(): void
+    {
+        $admin= User::factory()->create([
             'name' => 'Antonio Barraza Guzmán',
             'email' => 'antonio.barraza.guzman@gmail.com',
             'password' => Hash::make('Luckygo23'),
@@ -23,10 +25,9 @@ class UserSeeder extends Seeder
             'stat' => true,
             'lotcant' => '0',
             'remember_token' => Str::random(10)
-        ];
-        DB::table('users')->insert($data);
+        ]);
         
-        $data = [
+        $sorteadorData = [
             'name' => 'Vicente Araya Rojas',
             'email' => 'vicente.araya9821@gmail.com',
             'password' => Hash::make('1'),
@@ -36,7 +37,11 @@ class UserSeeder extends Seeder
             'lotcant' => '0',
             'remember_token' => Str::random(10)
         ];
-        DB::table('users')->insert($data);
-
+        
+        $response = $this->actingAs($admin)->assertAuthenticated()->post(route('admin.register'), $sorteadorData);
+        $this->assertDatabaseHas('users', [
+            'email' => $sorteadorData['email'],
+            'role' => 'S'
+        ]);
     }
 }
