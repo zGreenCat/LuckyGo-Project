@@ -5,86 +5,102 @@
 <html>
 <head>
    <title>Lotería</title>
+   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.min.js"></script>
 </head>
 <body>
-   <h1>Datos de tu billete</h1>
-   <table>
-   	<tr>
-        <th>ID</th>
-   		<th>Fecha</th>
-   		<th>Números jugados</th>
+   <div class="px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto overflow-hidden">
+        <form>
+          <h1 class="text-2xl font-bold text-center text-black mb-8">Detalles de tu Billete</h1>
+          <table class="w-full bg-white shadow-md rounded-lg overflow-hidden mb-8">
+            <tr>
+              <th class="bg-[#0a74da] text-white uppercase font-bold p-3">ID</th>
+              <th class="bg-[#0a74da] text-white uppercase font-bold p-3">Fecha</th>
+              <th class="bg-[#0a74da] text-white uppercase font-bold p-3">Números Jugados</th>
+            </tr>
+            <tr class="even:bg-gray-100">
+              <td class="p-3">{{$ticket->ticketID}}</td>
+              <td class="p-3">{{$ticket->date}}</td>
+              <td class="p-3">{{$ticket->selectedNumbers}}</td>
+            </tr>
+          </table>
 
-   	</tr>
-   	<tr>
-        <td>{{$ticket->ticketID }}</td>
-   		<td>{{$ticket->date }}</td>
-   		<td>{{$ticket->selectedNumbers }}</td>
-		
-   	</tr>
-   </table>
-   <!-- Si aún no se hace el sorteo -->
-   @if ($raffle->stat == 1)
-		<h1>El sorteo aun no se hace, vuelve despues</h1>
-	<!-- Si ya se hizo el sorteo -->
-   @else
-    	<h1>Resultados del sorteo</h1>
-		<table>
-			<tr>
-				<th>Fecha del sorteo</th>
-				<th>Números Ganadores</th>
-				<th>"Tendré Suerte"</th>
-			</tr>
-			<tr>
-				<td>{{$raffle->sunday }}</td>
-				<td>{{$raffle->won }}</td>
-				<td>{{$raffle->won_luck }}</td>
-			</tr>
-		</table>
+          @if ($raffle->stat == 1)
+            <div class="text-center text-lg bg-yellow-100 text-yellow-800 p-4 rounded-lg mb-8">
+              <h2 class="text-xl font-bold mb-2">El sorteo aún no se ha realizado</h2>
+              <p>Por favor, vuelve más tarde para ver los resultados.</p>
+            </div>
+          @else
+            <h1 class="text-2xl font-bold text-center text-black mb-8">Resultados del Sorteo</h1>
+            <table class="w-full bg-white shadow-md rounded-lg overflow-hidden mb-8">
+              <tr>
+                <th class="bg-[#0a74da] text-white uppercase font-bold p-3 text-center w-1/3">Fecha del Sorteo</th>
+                <th class="bg-[#0a74da] text-white uppercase font-bold p-3 text-center w-1/3">Números Ganadores</th>
+                <th class="bg-[#0a74da] text-white uppercase font-bold p-3 text-center w-1/3">"Tendré Suerte"</th>
+              </tr>
+              <tr class="even:bg-gray-100">
+                <td class="p-3 text-center">{{$raffle->sunday}}</td>
+                <td class="p-3 text-center">{{$raffle->won}}</td>
+                <td class="p-3 text-center">{{$raffle->won_luck}}</td>
+              </tr>
+            </table>
 
-		@if ($raffle->won == $ticket->selectedNumbers || $raffle->won_luck == $ticket->selectedNumbers)
-			<h1>Haz ganao </h1> 
-			<h1>Premios</h1>
-			<table>
-				<tr>
-					<th>Premio sorteo principal</th>
-					<th>Premio sorteo "Tendré suerte"</th>
-				</tr>
-				<tr>
-
-					@if ($ticket->luck)
-						<td>Sin premio</td>
-						<td>${{($raffle->cant_tickets_luck*3000)}}</td>
-					@else
-						<td>${{($raffle->cant_tickets*2000)}}</td>
-						<td>Sin premio</td>
-					@endif
-
-					
-				</tr>
-				
-			</table>
-			
-		@else
-			<h1>perdiste</h1>
-		@endif
-	@endif
+            @if ($raffle->won == $ticket->selectedNumbers || $raffle->won_luck == $ticket->selectedNumbers)
+              <div class="text-center text-lg bg-green-100 text-green-800 p-4 rounded-lg mb-8">
+                <h2 class="text-xl font-bold mb-2">¡Felicidades! Has Ganado</h2>
+              </div>
+              <h1 class="text-2xl font-bold text-center text-black mb-8">Premios</h1>
+              <table class="w-full bg-white shadow-md rounded-lg overflow-hidden mb-8">
+                <tr>
+                  <th class="bg-[#0a74da] text-white uppercase font-bold p-3 text-center w-1/2">Premio Sorteo Principal</th>
+                  <th class="bg-[#0a74da] text-white uppercase font-bold p-3 text-center w-1/2">Premio Sorteo "Tendré Suerte"</th>
+                </tr>
+                <tr class="even:bg-gray-100">
+                  @if ($ticket->luck)
+                    <td class="p-3 text-center">Sin premio</td>
+                    <td class="p-3 text-center">${{number_format($raffle->cant_tickets_luck*3000, 0, ',', '.')}}</td>
+                  @else
+                    <td class="p-3 text-center">${{number_format($raffle->cant_tickets*2000, 0, ',', '.')}}</td>
+                    <td class="p-3 text-center">Sin premio</td>
+                  @endif
+                </tr>
+              </table>
+            @else
+              <div class="text-center text-lg bg-red-100 text-red-800 p-4 rounded-lg mb-8">
+                <h2 class="text-xl font-bold mb-2">Lo sentimos, no has ganado esta vez</h2>
+                <p>¡Mejor suerte para la próxima!</p>
+              </div>
+            @endif
+          @endif
+        </form>
+      </div>
+    </div>
+   <script>
+     @if ($raffle->won == $ticket->selectedNumbers || $raffle->won_luck == $ticket->selectedNumbers)
+       window.onload = function() {
+         confetti({
+           particleCount: 200,
+           spread: 70,
+           origin: { y: 0.6 }
+         });
+       };
+     @endif
+   </script>
 </body>
-
-
 <style>
-	table {
-		border-collapse: collapse;
-		width: 50%;
-		margin: 0 auto;
-	}
-	th, td {
-		border: 1px solid black;
-		padding: 8px;
-		text-align: center;
-	}
-	th {
-		background-color: #f2f2f2;
-	}
+  table {
+    border-collapse: collapse;
+    width: 50%;
+    margin: 0 auto;
+  }
+  th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
 </style>
 </html>
 @endsection
