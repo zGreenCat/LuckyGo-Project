@@ -7,25 +7,33 @@
  <hr style="border: 0; border-top: 1px solid #e0e0e0; margin: 20px 0;">
 
     <div class="flex justify-center space-x-4 mt-10">
-        <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mr-5">
-            <a href="#">
-                <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">¿Quieres jugar?</h2>
-            </a>
+        <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mr-5">       
+            <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">¿Quieres jugar?</h2>            
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Para obtener tu billete de lotería y jugar en nuestra página, por favor presiona el botón de acá abajo y sigue las instrucciones. ¡Mucha suerte!</p>
             <a href="{{ route('buyTicket') }}" class="btn text-white bg-[#0A74DA] hover:bg-[#084A91] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 transition duration-200 justify-center items-center">
                 Comprar billete
             </a> 
         </div>
-        <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <a href="#">
-                <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">¿Ya jugaste?</h2>
-            </a>
-            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">¿Ya tienes un billete? Si ya tienes un billete y quieres revisar cómo te fue en el sorteo, solo necesitas tener el número de billete e ingresarlo aquí abajo.</p>
-            <a href="#" class="btn text-white bg-[#0A74DA] hover:bg-[#084A91] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 transition duration-200 justify-center items-center">
-                Ingresar billete
-            
-            </a>
+        <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">    
+            <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">¿Ya jugaste?</h2>
+            <form id="regForm" class="max-w-lg mx-auto bg-gray-100 p-9 rounded-lg shadow-lg w-full" method="POST" action="{{ route('verifyTicket.store') }}" novalidate>
+                @csrf
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">¿Ya tienes un billete? Si ya tienes un billete y quieres revisar cómo te fue en el sorteo, solo necesitas tener el número de billete e ingresarlo aquí abajo.</p>
+                <div class="form-group">
+                    <label for="ticketID">Ingrese el codigo de su billete</label>      
+                    
+                    <input type="text" class="form-control" id="ticketID" name="ticketID" placeholder="LG123" maxlength="5">
+                    @error('ticketID')
+                        <p style="background-color:#F6686B" class=" text-white my-2 rounded-lg text-sm text-center p-2">{{$message}}</p>
+                    @enderror
+                    @if (@session('message'))
+                        <p style="background-color:#F6686B" class=" text-white my-2 rounded-lg text-sm text-center p-2">{{ session('message')}}</p>    
+                     @endif
+                </div>
+                <button type="submit" class="text-white bg-[#0A74DA] hover:bg-[#084A91] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center transition duration-200" >Verificar billete</button>
+            </form>
         </div>
     </div>
 
 @endsection
+

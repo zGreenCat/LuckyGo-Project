@@ -31,7 +31,7 @@ class AdminController extends Controller
         $user = User::find($id);
         $user->stat = $newStat;
         $user->save();
-        return redirect()->route('admin.view')->with('success2','success2');;
+        return redirect()->route('admin.view')->with('success2','success2');
 
     }
 }
