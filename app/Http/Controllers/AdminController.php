@@ -12,7 +12,7 @@ class AdminController extends Controller
     {
         $users = DB::table('users')->where('role','S')->orderBy('name')->get();
         return view('admin.index',[
-            'users'=> $users
+            'users'=> $users,'i'=> 1,
         ]);
     }
     public function search(Request $request)
@@ -31,7 +31,7 @@ class AdminController extends Controller
         $user = User::find($id);
         $user->stat = $newStat;
         $user->save();
-        return redirect()->route('admin.view')->with('success2','success2');;
+        return redirect()->route('admin.view')->with('success2','success2');
 
     }
 }

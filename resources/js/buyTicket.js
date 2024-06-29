@@ -1,8 +1,8 @@
     const totalElement = document.getElementById('total');
-    const tendresuerteCheckbox = document.getElementById('tendresuerte');
+    const luckCheckbox = document.getElementById('luck');
     const numberCircles = document.querySelectorAll('.number-circle');
 
-    tendresuerteCheckbox.addEventListener('change', function () {
+    luckCheckbox.addEventListener('change', function () {
         updateTotal();
     });
 
@@ -15,7 +15,13 @@
             } else if (selectedCircles.length < 5) {
                 this.classList.add('selected');
             } else {
-                alert('Solo puedes seleccionar un máximo de 5 números.');
+                Swal.fire({
+                    title: 'Sigue las instrucciones',
+                    html: '<div>Solo puedes seleccionar 5 números para jugar.',
+                    icon: 'error',
+                    confirmButtonColor: 'f56558',
+                    confirmButtonText: 'Entendido'
+                })
             }
     
         });
@@ -23,17 +29,9 @@
 
     function updateTotal() {
         let total = 2000;
-        if (tendresuerteCheckbox.checked) {
+        if (luckCheckbox.checked) {
             total += 1000;
         }
         totalElement.textContent = '$' + total.toLocaleString();
         
     }
-
-
-    
-
-
-    
-
-    

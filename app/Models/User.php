@@ -48,4 +48,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function raffles()
+    {
+        return $this->hasMany('App\Models\Raffle');
+    }
 }
