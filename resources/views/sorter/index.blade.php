@@ -3,7 +3,9 @@
 <link href="{{ asset('css/registerSorter.css') }}" rel="stylesheet">
 <script src="{{ asset('js/sorterRegister.js') }}"></script>
 <!-- Tabla con datos -->
+
 @if ($raffles->count()>0)
+
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
   <table id="dataTable" class="w-full text-sm text-center rtl:text-center text-gray-500 dark:text-gray-400 ">
       <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -34,11 +36,15 @@
               @else
               <td class="px-6 py-4 flex items-center justify-center ml-4">
                   No realizado
-                  <button title="Realizar sorteo" style="transition color 0.1s; color:#2ECC71;" onmouseover="this.style.color='#27AE60'" onmouseout="this.style.color='#2ECC71'" onclick="showForm('{{$raffle->sunday}}','{{$raffle->cant_tickets_luck}}')"  class="rounded-lg focus:outline-none focus:ring-blue-300 text-white px-2 py-2" type="submit">
+                  <button data-tooltip-target="tooltip-animation-{{ $loop->index }}" style="transition color 0.1s; color:#2ECC71;" onmouseover="this.style.color='#27AE60'" onmouseout="this.style.color='#2ECC71'"  onclick="showForm('{{$raffle->sunday}}','{{$raffle->cant_tickets_luck}}')" class="rounded-lg focus:outline-none focus:ring-blue-300 text-white px-2 py-2" type="submit">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
                       <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
-                    </svg>
-                </button>
+                     </svg>
+                  </button>   
+                  <div id="tooltip-animation-{{ $loop->index }}" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                    Realizar sorteo
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                  </div>
               </td>
               @endif
           </tr>

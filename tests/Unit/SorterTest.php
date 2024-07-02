@@ -40,7 +40,7 @@ class SorterTest extends TestCase
             'age' => 40,
         ]);
     }
-    public function testRegisterSorter()
+    public function testRegisterRaffle()
     {
         $sorter= User::factory()->create([
             'name' => 'Vicente Araya Rojas',
