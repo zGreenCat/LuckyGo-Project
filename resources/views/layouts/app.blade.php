@@ -13,9 +13,9 @@
   @if (auth()->user()->role == 'A')
   <nav class="bg-white border-gray-200 dark:bg-gray-900">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">   
-      <button data-tooltip-target="tooltip-bottom" data-tooltip-placement="bottom" type="button">
+      <a href="{{route("logout")}}"  data-tooltip-target="tooltip-bottom" data-tooltip-placement="bottom" type="button" >
         <img   src="{{ asset('images/LogoFinal-LuckyGo.png') }}" alt="Imagen del logo de Lucky Go" width="150">
-      </button>
+      </a>
       <div id="tooltip-bottom" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
           Volver al incio
           <div class="tooltip-arrow" data-popper-arrow></div>
@@ -57,9 +57,9 @@
   <nav class="bg-white border-gray-200 dark:bg-gray-900">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 
-      <button data-tooltip-target="tooltip-bottom" data-tooltip-placement="bottom" type="button">
+      <a href="{{route("logout")}}" data-tooltip-target="tooltip-bottom" data-tooltip-placement="bottom" type="button">
         <img   src="{{ asset('images/LogoFinal-LuckyGo.png') }}" alt="Imagen del logo de Lucky Go" width="150">
-      </button>
+      </a>
       <div id="tooltip-bottom" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
           Volver al incio
           <div class="tooltip-arrow" data-popper-arrow></div>
@@ -102,9 +102,9 @@
   @guest     
   <nav>
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-      <button data-tooltip-target="tooltip-bottom" data-tooltip-placement="bottom" type="button">
+      <a href="{{route("main")}}"  data-tooltip-target="tooltip-bottom" data-tooltip-placement="bottom" type="button">
         <img   src="{{ asset('images/LogoFinal-LuckyGo.png') }}" alt="Imagen del logo de Lucky Go" width="150">
-      </button>
+      </a>
       <div id="tooltip-bottom" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
           Volver al incio
           <div class="tooltip-arrow" data-popper-arrow></div>

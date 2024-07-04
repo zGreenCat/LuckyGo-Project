@@ -23,7 +23,7 @@
           <!-- Filas de datos aquí -->
           @foreach ($raffles as $raffle)
           <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 items-center">
-              <td class="px-6 py-4">{{$raffle->sunday}}</td>
+              <td class="px-6 py-4">{{$raffle->formatted_sunday}}</td>
               <td class="py-4">{{$raffle->cant_tickets + $raffle->cant_tickets_luck}}</td>
               <td class="px-6 py-4">${{number_format(($raffle->cant_tickets + $raffle->cant_tickets_luck) * 2000, 0, ',', '.')}}</td>
               <td class="py-4">${{number_format($raffle->cant_tickets_luck * 1000, 0, ',', '.')}}</td>
@@ -36,7 +36,7 @@
               @else
               <td class="px-6 py-4 flex items-center justify-center ml-4">
                   No realizado
-                  <button data-tooltip-target="tooltip-animation-{{ $loop->index }}" style="transition color 0.1s; color:#2ECC71;" onmouseover="this.style.color='#27AE60'" onmouseout="this.style.color='#2ECC71'"  onclick="showForm('{{$raffle->sunday}}','{{$raffle->cant_tickets_luck}}')" class="rounded-lg focus:outline-none focus:ring-blue-300 text-white px-2 py-2" type="submit">
+                  <button data-tooltip-target="tooltip-animation-{{ $loop->index }}" style="transition color 0.1s; color:#2ECC71;" onmouseover="this.style.color='#27AE60'" onmouseout="this.style.color='#2ECC71'"  onclick="showForm('{{$raffle}}')" class="rounded-lg focus:outline-none focus:ring-blue-300 text-white px-2 py-2" type="submit">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
                       <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
                      </svg>
@@ -72,13 +72,13 @@
         <th style="border: 1px solid #ddd; padding: 8px;">Total</th>
     </tr>
     <tr style="text-align: center;">
-        <td style="border: 1px solid #ddd; padding: 8px;">{{$raffle->sunday}}</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">{{$raffle->formatted_sunday}}</td>
         <td style="border: 1px solid #ddd; padding: 8px;">{{$raffle->cant_tickets + $raffle->cant_tickets_luck}}</td>
         <td style="border: 1px solid #ddd; padding: 8px;">${{number_format(($raffle->cant_tickets + $raffle->cant_tickets_luck) * 2000, 0, ',', '.')}}</td>
         <td style="border: 1px solid #ddd; padding: 8px;">${{number_format($raffle->cant_tickets_luck * 1000, 0, ',', '.')}}</td>
         <td style="border: 1px solid #ddd; padding: 8px;">${{number_format(($raffle->cant_tickets_luck * 3000) + ($raffle->cant_tickets * 2000), 0, ',', '.')}}</td>
     </tr>
-</table>
+  </table>
 <p class="items-center justify-center text-center text-center mt-5">¡Selecciona los números ganadores!</p>
     <div class="form-wrapper flex justify-center text-center text-center">
       <form id="regForm1" class="p-4 rounded-lg w-full mx-5 " method="POST" action="{{ route('sorter.register') }}" novalidate>
@@ -133,7 +133,7 @@
         <th style="border: 1px solid #ddd; padding: 8px;">Total</th>
     </tr>
     <tr style="text-align: center;">
-        <td style="border: 1px solid #ddd; padding: 8px;">{{$raffle->sunday}}</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">{{$raffle->formatted_sunday}}</td>
         <td style="border: 1px solid #ddd; padding: 8px;">{{$raffle->cant_tickets + $raffle->cant_tickets_luck}}</td>
         <td style="border: 1px solid #ddd; padding: 8px;">${{number_format(($raffle->cant_tickets + $raffle->cant_tickets_luck) * 2000, 0, ',', '.')}}</td>
         <td style="border: 1px solid #ddd; padding: 8px;">${{number_format($raffle->cant_tickets_luck * 1000, 0, ',', '.')}}</td>

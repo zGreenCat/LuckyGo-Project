@@ -58,12 +58,12 @@
 					</tr>
 					<tr class="even:bg-gray-100">
 					  @if ($raffle->won == $ticket->selectedNumbers)
-						<td class="p-3 text-center">${{number_format(($raffle->cant_tickets_luck*2000)/$ticketCountWon, 0, ',', '.')}}</td>
+						<td class="p-3 text-center">${{number_format(($raffle->cant_tickets*2000)/$ticketCount, 0, ',', '.')}}</td>
 					  @else
 						<td class="p-3 text-center">Sin premio</td>
 					  @endif
 					  @if ($ticket->luck && $raffle->won_luck == $ticket->selectedNumbers)
-					  <td class="p-3 text-center">${{number_format(($raffle->cant_tickets_luck*1000)/$ticketCountWon, 0, ',', '.')}}</td>
+					  <td class="p-3 text-center">${{number_format(($raffle->cant_tickets_luck*1000)/$ticketCountLuck, 0, ',', '.')}}</td>
 						@else
 					  <td class="p-3 text-center">Sin premio</td>
 					@endif

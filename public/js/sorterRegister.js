@@ -49,14 +49,32 @@ function selectNumber(element) {
     selectedNumbersInput.value = numbers.join('-');
     
   }
-  function showForm(sunday,cant_luck) {
+  function showForm(raffle) {
+    if (typeof raffle === 'string') {
+        raffle = JSON.parse(raffle);
+    }
+    sunday = raffle.sunday;
+    cant_luck = raffle.cant_tickets_luck
+    console.log(sunday);
     if(cant_luck > 0){
-         document.getElementById('editFormContainer').classList.remove('hidden');
-         document.getElementById('sundayInput1').value = sunday;
+        const detailsTable = document.querySelector('#editFormContainer table');
+        detailsTable.rows[1].cells[0].innerText = raffle.formatted_sunday;
+        detailsTable.rows[1].cells[1].innerText = raffle.cant_tickets + raffle.cant_tickets_luck;
+        detailsTable.rows[1].cells[2].innerText = `$${((raffle.cant_tickets + raffle.cant_tickets_luck) * 2000).toLocaleString("es-ES")}`;
+        detailsTable.rows[1].cells[3].innerText = `$${(raffle.cant_tickets_luck * 1000).toLocaleString("es-ES")}`;
+        detailsTable.rows[1].cells[4].innerText = `$${((raffle.cant_tickets_luck * 3000) + (raffle.cant_tickets * 2000)).toLocaleString("es-ES")}`;
+        document.getElementById('editFormContainer').classList.remove('hidden');
+        document.getElementById('sundayInput1').value = sunday;
          
     }else {
-         document.getElementById('editFormContainer2').classList.remove('hidden');
-         document.getElementById('sundayInput2').value = sunday;
+        const detailsTable = document.querySelector('#editFormContainer2 table');
+        detailsTable.rows[1].cells[0].innerText = raffle.formatted_sunday;
+        detailsTable.rows[1].cells[1].innerText = raffle.cant_tickets + raffle.cant_tickets_luck;
+        detailsTable.rows[1].cells[2].innerText = `$${((raffle.cant_tickets + raffle.cant_tickets_luck) * 2000).toLocaleString("es-ES")}`;
+        detailsTable.rows[1].cells[3].innerText = `$${(raffle.cant_tickets_luck * 1000).toLocaleString("es-ES")}`;
+        detailsTable.rows[1].cells[4].innerText = `$${((raffle.cant_tickets_luck * 3000) + (raffle.cant_tickets * 2000)).toLocaleString("es-ES")}`;
+        document.getElementById('editFormContainer2').classList.remove('hidden');
+        document.getElementById('sundayInput2').value = sunday;
     }
     document.getElementById('overlay').style.display = 'block';
      document.querySelectorAll('.form-wrapper form').forEach(form => {
@@ -78,7 +96,6 @@ function selectNumber(element) {
     const formContainer2 = document.getElementById('editFormContainer2');
     formContainer2.classList.add('hidden');
     document.getElementById('overlay').style.display = 'none';
-    document.getElementById('overlay2').style.display2 = 'none';
   }
   function cancelForm2() {
     document.getElementById('overlay').style.display = 'none';
@@ -88,7 +105,6 @@ function selectNumber(element) {
     form.querySelector('input[name="selectedNumbers1"]').value = '0';
     const formContainer2 = document.getElementById('editFormContainer2');
     formContainer2.classList.add('hidden');
-    document.getElementById('overlay2').style.display2 = 'none';
   }
 
   function submitForm() {
