@@ -43,6 +43,13 @@ class SorterController extends Controller
             $raffle->formatted_sunday = $formattedSunday;
             return $raffle;
         });
+        $raffles->transform(function ($raffle) {
+            $date = Carbon::parse($raffle->updated_at);
+            $formattedDate = $date->format('d-m-Y H:i:s');
+
+            $raffle->formatted_date = $formattedDate;
+            return $raffle;
+        });
         return view('sorter.index', compact('raffles'));
     }
     public function store(Request $request)

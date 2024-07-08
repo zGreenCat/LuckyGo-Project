@@ -32,7 +32,7 @@
               <td class="px-6 py-4 ">Abierto</td>
               @elseif ($raffle->stat == 0)
               <td class="px-6 py-4">Realizado</td>
-              <td class="py-3">{{ $raffle->user->name ?? '' }}    {{ $raffle->updated_at}}</td>
+              <td class="py-3">{{ $raffle->user->name ?? '' }}    {{ $raffle->formatted_date}}</td>
               @else
               <td class="px-6 py-4 flex items-center justify-center ml-4">
                   No realizado
