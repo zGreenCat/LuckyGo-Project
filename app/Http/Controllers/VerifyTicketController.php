@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Carbon\Carbon;
 use App\Models\VerifyTicket;
 use App\Models\LotteryTicket;
 use Illuminate\Http\Request;
@@ -46,17 +46,22 @@ class VerifyTicketController extends Controller
         if ($raffle->stat == 1 ||$raffle->stat == -1){
             return back()->with('message','El sorteo asociado a este billete aún no ha sido realizado.');
         }
-        if($raffle->won == $ticket->selectedNumbers || $raffle->won_luck == $ticket->selectedNumbers)
-        {
-            $ticketCount = LotteryTicket::where('selectedNumbers', $raffle->won)->count();
-            $ticketCountWon = LotteryTicket::where('selectedNumbers', $raffle->won)->count();
-        }else
-        {
-            $ticketCount = 0;
-            $ticketCountWon = 0;
-        }
+        $ticketCount = LotteryTicket::where('selectedNumbers', $raffle->won)
+                            ->where('rafflesid',$raffle->id )
+                            ->where('luck',false)
+                            ->count();
+        $ticketCountLuck = LotteryTicket::where('selectedNumbers', $raffle->won_luck)
+                            ->where('rafflesid',$raffle->id )
+                            ->where('luck',true)
+                            ->count();
+        $ticketDate = Carbon::parse($ticket->date);
+        $formattedTicket = $ticketDate->format('d-m-Y');
+        $ticket->formatted_date = $formattedTicket;
+        $sundayDate = Carbon::parse($raffle->sunday);
+        $formattedSunday = $sundayDate->format('d-m-Y');
+        $ticket->formatted_sunday = $formattedSunday;
         return view('client.verifyTicket',[
-            'ticket'=>$ticket, 'raffle'=>$raffle,'ticketCount'=>$ticketCount,'ticketCountWon'=>$ticketCountWon,
+            'ticket'=>$ticket, 'raffle'=>$raffle,'ticketCount'=>$ticketCount,'ticketCountLuck'=>$ticketCountLuck,
         ]);    
     }
 
@@ -89,6 +94,6 @@ class VerifyTicketController extends Controller
      */
     public function destroy(VerifyTicket $verifyTicket)
     {
-        //
+        //todo el proyecto de luckygo
     }
 }

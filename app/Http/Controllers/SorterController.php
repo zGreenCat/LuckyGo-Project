@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Carbon\Carbon;
 use App\Models\Raffle;
 use App\Models\User;
 use DateTime;
@@ -31,9 +31,26 @@ class SorterController extends Controller
                 $raffle->save();
             }
         }
-        return view('sorter.index',[
-            'raffles'=> $raffles
-        ]);
+        $raffles->transform(function ($raffle) {
+            $carbonDate = Carbon::parse($raffle->sunday);
+            $formattedSunday = $carbonDate->locale('es')->isoFormat('dddd DD [de] MMMM');
+
+            $parts = explode(' ', $formattedSunday);
+            $parts[0] = ucfirst($parts[0]);
+            $parts[3] = ucfirst($parts[3]);
+            $formattedSunday = implode(' ', $parts);
+
+            $raffle->formatted_sunday = $formattedSunday;
+            return $raffle;
+        });
+        $raffles->transform(function ($raffle) {
+            $date = Carbon::parse($raffle->updated_at);
+            $formattedDate = $date->format('d-m-Y H:i:s');
+
+            $raffle->formatted_date = $formattedDate;
+            return $raffle;
+        });
+        return view('sorter.index', compact('raffles'));
     }
     public function store(Request $request)
     {

@@ -12,11 +12,14 @@
   @auth
   @if (auth()->user()->role == 'A')
   <nav class="bg-white border-gray-200 dark:bg-gray-900">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-      <a href="{{ route('logout') }}">
-        <img src="{{ asset('images/LogoFinal-LuckyGo.png') }}" alt="Imagen del logo de Lucky Go" width="150">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">   
+      <a href="{{route("logout")}}"  data-tooltip-target="tooltip-bottom" data-tooltip-placement="bottom" type="button" >
+        <img   src="{{ asset('images/LogoFinal-LuckyGo.png') }}" alt="Imagen del logo de Lucky Go" width="150">
       </a>
-
+      <div id="tooltip-bottom" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+          Volver al incio
+          <div class="tooltip-arrow" data-popper-arrow></div>
+      </div>
       <button style="border-color:#2ECC71" data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200  dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
           <span class="sr-only">Open main menu</span>
           <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
@@ -54,9 +57,13 @@
   <nav class="bg-white border-gray-200 dark:bg-gray-900">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 
-      <a href="{{ route('logout') }}">
-        <img src="{{ asset('images/LogoFinal-LuckyGo.png') }}" alt="Imagen del logo de Lucky Go" width="150">
+      <a href="{{route("logout")}}" data-tooltip-target="tooltip-bottom" data-tooltip-placement="bottom" type="button">
+        <img   src="{{ asset('images/LogoFinal-LuckyGo.png') }}" alt="Imagen del logo de Lucky Go" width="150">
       </a>
+      <div id="tooltip-bottom" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+          Volver al incio
+          <div class="tooltip-arrow" data-popper-arrow></div>
+      </div>
       <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
 
         <span class="sr-only">Open main menu</span>
@@ -95,9 +102,13 @@
   @guest     
   <nav>
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-      <a href="{{ route('main') }}">
-        <img src="{{ asset('images/LogoFinal-LuckyGo.png') }}" alt="Imagen del logo de Lucky Go" width="150">
+      <a href="{{route("main")}}"  data-tooltip-target="tooltip-bottom" data-tooltip-placement="bottom" type="button">
+        <img   src="{{ asset('images/LogoFinal-LuckyGo.png') }}" alt="Imagen del logo de Lucky Go" width="150">
       </a>
+      <div id="tooltip-bottom" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+          Volver al incio
+          <div class="tooltip-arrow" data-popper-arrow></div>
+      </div>
       <div class="hidden w-full md:block md:w-auto" id="navbar-default">
         <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
           <li>

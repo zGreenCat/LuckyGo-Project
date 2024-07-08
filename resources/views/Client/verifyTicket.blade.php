@@ -19,7 +19,7 @@
 			  </tr>
 			  <tr class="even:bg-gray-100">
 				<td class="p-3">{{$ticket->ticketID}}</td>
-				<td class="p-3">{{$ticket->date}}</td>
+				<td class="p-3">{{$ticket->formatted_date}}</td>
 				<td class="p-3">{{$ticket->selectedNumbers}}</td>
 			  </tr>
 			</table>
@@ -35,18 +35,22 @@
 				<tr>
 				  <th class="bg-[#0a74da] text-white uppercase font-bold p-3 text-center w-1/3">Fecha del Sorteo</th>
 				  <th class="bg-[#0a74da] text-white uppercase font-bold p-3 text-center w-1/3">Números Ganadores</th>
-				  <th class="bg-[#0a74da] text-white uppercase font-bold p-3 text-center w-1/3">"Tendré Suerte"</th>
+				  @if ($ticket->luck)
+                  <th class="bg-[#0a74da] text-white uppercase font-bold p-3 text-center w-1/3">"Tendré Suerte"</th>
+                  @endif
 				</tr>
 					<tr class="even:bg-gray-100">
-					<td class="p-3 text-center">{{$raffle->sunday}}</td>
+					<td class="p-3 text-center">{{$ticket->formatted_sunday}}</td>
 					<td class="p-3 text-center">{{$raffle->won}}</td>
+					@if ($ticket->luck)
 					<td class="p-3 text-center">{{$raffle->won_luck}}</td>
+					@endif
 				  </tr>
 					
 				</tr>
 			  </table>
 	  
-			  @if ($raffle->won == $ticket->selectedNumbers || $raffle->won_luck == $ticket->selectedNumbers)
+			  @if ($raffle->won == $ticket->selectedNumbers || ($raffle->won_luck == $ticket->selectedNumbers && $ticket->luck))
 				<div class="text-center text-lg bg-green-100 text-green-800 p-4 rounded-lg mb-8">
 				  <h2 class="text-xl font-bold mb-2">¡Felicidades! Has Ganado</h2>
 				</div>
@@ -58,12 +62,12 @@
 					</tr>
 					<tr class="even:bg-gray-100">
 					  @if ($raffle->won == $ticket->selectedNumbers)
-						<td class="p-3 text-center">${{number_format(($raffle->cant_tickets_luck*2000)/$ticketCountWon, 0, ',', '.')}}</td>
+						<td class="p-3 text-center">${{number_format(($raffle->cant_tickets*2000)/$ticketCount, 0, ',', '.')}}</td>
 					  @else
 						<td class="p-3 text-center">Sin premio</td>
 					  @endif
 					  @if ($ticket->luck && $raffle->won_luck == $ticket->selectedNumbers)
-					  <td class="p-3 text-center">${{number_format(($raffle->cant_tickets_luck*1000)/$ticketCountWon, 0, ',', '.')}}</td>
+					  <td class="p-3 text-center">${{number_format(($raffle->cant_tickets_luck*1000)/$ticketCountLuck, 0, ',', '.')}}</td>
 						@else
 					  <td class="p-3 text-center">Sin premio</td>
 					@endif
@@ -80,7 +84,7 @@
 		</div>
 	  </div>
 </body>
-@if ($raffle->won == $ticket->selectedNumbers || $raffle->won_luck == $ticket->selectedNumbers)
+@if ($raffle->won == $ticket->selectedNumbers || ($raffle->won_luck == $ticket->selectedNumbers && $ticket->luck))
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
 <script>
 	window.onload = function() {

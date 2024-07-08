@@ -72,13 +72,18 @@
                       
                 </td>
                 <td class="px-6 py-4">
-                  <button style="margin-left: 20px; transition background-color 0.1s; background-color:#2ECC71;" onmouseover="this.style.backgroundColor='#27AE60'" onmouseout="this.style.backgroundColor='#2ECC71'" class="rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 text-white flex  px-2 py-2" type="submit">
+                  <button data-tooltip-target="tooltip-animation-{{ $loop->index }}" style="margin-left: 20px; transition background-color 0.1s; background-color:#2ECC71;" onmouseover="this.style.backgroundColor='#27AE60'" onmouseout="this.style.backgroundColor='#2ECC71'" class="rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 text-white flex  px-2 py-2" type="submit">
                     <svg width="20" height="20" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="1 0 16 14">
                         <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
                         <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
                     </svg>
+                    
                     <a class="flex">Actualizar</a>
                 </button>
+                <div id="tooltip-animation-{{ $loop->index }}" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                  Actualizar Estado
+                  <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
                   </form>
                 </td>
 
