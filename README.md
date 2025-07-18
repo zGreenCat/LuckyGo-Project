@@ -1,66 +1,170 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# LuckyGo Project
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 
-## About Laravel
+## 📋 Descripción
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+LuckyGo es un proyecto web desarrollado con Laravel que utiliza tecnologías modernas como Vite para el bundling de assets y Tailwind CSS para el diseño.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🚀 Tecnologías
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Backend**: Laravel (PHP)
+- **Frontend**: Blade Templates
+- **CSS Framework**: Tailwind CSS
+- **Build Tool**: Vite
+- **Database**: MySQL/PostgreSQL
+- **Testing**: PHPUnit
 
-## Learning Laravel
+## 📦 Requisitos
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- PHP >= 8.1
+- Composer
+- Node.js >= 16
+- npm o yarn
+- MySQL/PostgreSQL
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 🔧 Instalación
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. **Clona el repositorio**
+   ```bash
+   git clone https://github.com/zGreenCat/LuckyGo-Project.git
+   cd LuckyGo-Project
+   ```
 
-## Laravel Sponsors
+2. **Instala las dependencias de PHP**
+   ```bash
+   composer install
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+3. **Instala las dependencias de Node.js**
+   ```bash
+   npm install
+   ```
 
-### Premium Partners
+4. **Configura el entorno**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+5. **Configura la base de datos**
+   - Edita el archivo `.env` con tus credenciales de base de datos
+   - Ejecuta las migraciones:
+     ```bash
+     php artisan migrate
+     ```
 
-## Contributing
+6. **Compila los assets**
+   ```bash
+   npm run build
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 🏃‍♂️ Uso
 
-## Code of Conduct
+### Desarrollo
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. **Inicia el servidor de desarrollo**
+   ```bash
+   php artisan serve
+   ```
 
-## Security Vulnerabilities
+2. **Inicia el servidor de Vite (en otra terminal)**
+   ```bash
+   npm run dev
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+3. **Visita la aplicación**
+   - Abre tu navegador en `http://localhost:8000`
 
-## License
+### Producción
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. **Optimiza la aplicación**
+   ```bash
+   composer install --optimize-autoloader --no-dev
+   php artisan config:cache
+   php artisan route:cache
+   php artisan view:cache
+   ```
+
+2. **Compila los assets para producción**
+   ```bash
+   npm run build
+   ```
+
+## 🧪 Testing
+
+Ejecuta las pruebas con PHPUnit:
+
+```bash
+# Ejecutar todas las pruebas
+php artisan test
+
+# Ejecutar pruebas específicas
+php artisan test --filter=NombreDeLaPrueba
+```
+
+## 📁 Estructura del Proyecto
+
+```
+LuckyGo-Project/
+├── app/                 # Lógica de la aplicación
+├── bootstrap/           # Archivos de arranque
+├── config/             # Archivos de configuración
+├── database/           # Migraciones y seeders
+├── public/             # Archivos públicos
+├── resources/          # Vistas, CSS, JS
+├── routes/             # Definición de rutas
+├── storage/            # Archivos de almacenamiento
+├── tests/              # Pruebas automatizadas
+├── composer.json       # Dependencias PHP
+├── package.json        # Dependencias Node.js
+├── tailwind.config.js  # Configuración Tailwind
+└── vite.config.js      # Configuración Vite
+```
+
+## 🎨 Personalización
+
+### Tailwind CSS
+
+El proyecto utiliza Tailwind CSS para el diseño. Puedes personalizar los estilos editando:
+
+- `tailwind.config.js` - Configuración de Tailwind
+- `resources/css/app.css` - Estilos personalizados
+
+### Vite
+
+La configuración de Vite se encuentra en `vite.config.js`. Aquí puedes:
+
+- Agregar nuevos puntos de entrada
+- Configurar plugins adicionales
+- Personalizar el proceso de build
+
+## 🤝 Contribución
+
+1. Fork el proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+## 📝 Licencia
+
+Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
+
+## 👤 Autor
+
+**zGreenCat**
+- GitHub: [@zGreenCat](https://github.com/zGreenCat)
+
+## 🙏 Agradecimientos
+
+- Laravel Framework
+- Tailwind CSS
+- Vite
+- Toda la comunidad open source
+
+---
+
+⭐ ¡Dale una estrella si este proyecto te fue útil!
